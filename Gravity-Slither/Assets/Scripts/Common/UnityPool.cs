@@ -21,13 +21,13 @@ namespace GS.Common {
             v_gameObject.transform.SetParent(_parent, true);
         }
 
-        public T Get<T>(Transform newParent = default, bool shouldsearchChildren = false) where T : Object {
+        public T Get<T>(Transform newParent = default, bool shouldSearchChildren = false) where T : Object {
             var v_object = Get();
             var v_transform = ((GameObject) v_object).transform;
             var v_returnValue = default(T);
             if (typeof(T) != typeof(GameObject)) {
                 // Find component and return.
-                v_returnValue = shouldsearchChildren
+                v_returnValue = shouldSearchChildren
                     ? v_transform.GetComponentInChildren<T>()
                     : v_transform.GetComponent<T>();
             } else {
@@ -38,6 +38,10 @@ namespace GS.Common {
             v_transform.SetParent(newParent, true);
             ((GameObject) v_object).transform.localScale = Vector3.one;
             return v_returnValue;
+        }
+        
+        protected override Object CreateObject() {
+            return Object.Instantiate(_prefabList[0]);
         }
 
         public override void Dispose() {
