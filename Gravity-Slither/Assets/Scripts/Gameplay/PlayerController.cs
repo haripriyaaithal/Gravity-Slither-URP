@@ -1,5 +1,6 @@
 ﻿using GS.Common;
 using GS.Gameplay.Inputs;
+using GS.Gameplay.Spawner;
 using UnityEngine;
 
 namespace GS.Gameplay.Player {
@@ -44,7 +45,12 @@ namespace GS.Gameplay.Player {
             if (other.gameObject.CompareTag(GlobalConstants.World)) {
                 return;
             }
-            // TODO: Game over
+
+            if (other.gameObject.CompareTag(GlobalConstants.Food)) {
+                other.gameObject.GetComponent<Food>()?.Eat();
+            }
+            
+            // TODO: If tree, game over
             Debug.Log($"Collision detected with {other.gameObject.name}".ToAqua(), this);
         }
 

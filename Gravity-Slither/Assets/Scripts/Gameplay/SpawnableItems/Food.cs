@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GS.Common;
+using UnityEngine;
 
 namespace GS.Gameplay.Spawner {
     public class Food : MonoBehaviour {
@@ -8,7 +9,7 @@ namespace GS.Gameplay.Spawner {
         }
 
         public void Eat() {
-            
+            EventManager.OnEatFood(this);
         }
     }
 }

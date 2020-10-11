@@ -1,5 +1,6 @@
 ﻿using GS.Common;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace GS.Gameplay.Spawner {
     public class FoodSpawner : SpawnerBase {
@@ -21,6 +22,18 @@ namespace GS.Gameplay.Spawner {
 
         #endregion
 
+        #region Unity event methods
+
+        private void OnEnable() {
+            EventManager.onEatFood += OnEatFood;
+        }
+
+        private void OnDisable() {
+            EventManager.onEatFood -= OnEatFood;
+        }
+
+        #endregion
+        
         private Vector3 GetRandomPoint() {
             // Return position where other objects are not present.
             var v_randomPoint = default(Vector3);
@@ -31,6 +44,10 @@ namespace GS.Gameplay.Spawner {
                 LayerMask.NameToLayer(GlobalConstants.World)) != 0);
 
             return v_randomPoint;
+        }
+
+        private void OnEatFood(Food food) {
+            ReturnToPool(food.gameObject);
         }
 
         #region Debug

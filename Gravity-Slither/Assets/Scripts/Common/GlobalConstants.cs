@@ -1,6 +1,5 @@
 ﻿namespace GS.Common {
-    public class GlobalConstants {
-        
+    public static class GlobalConstants {
         #region Scenes
 
         public static string InitScene = "InitScene";
@@ -8,7 +7,12 @@
 
         #endregion
 
+        #region Tags
+
         public static string World = "World";
+        public static string Food = "Food";
+
+        #endregion
 
         #region Pool max capacity
 
