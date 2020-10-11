@@ -33,8 +33,8 @@ namespace GS.Gameplay.Inputs {
                 } else {
                     _x *= -1;
                 }
-            } else if (Math.Abs(_movementDirection.z - _z * -1) > 0.0001f) {
-                if (!((_movementDirection.z > 0f && _z < 0f) || (_movementDirection.z < 0f && _z > 0f))) {
+            } else if (_z != 0) {
+                if (Math.Abs(_movementDirection.z - _z * -1) > 0.0001f) {
                     _movementDirection.z = _z;
                     _movementDirection.x = 0f;
                 } else {
