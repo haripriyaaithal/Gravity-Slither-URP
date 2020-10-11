@@ -1,18 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Food : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+namespace GS.Gameplay.Spawner {
+    public class Food : MonoBehaviour {
+        private void OnEnable() {
+            // Spawn animation
+            LeanTween.scale(gameObject, Vector3.one, 0.3f).setFrom(Vector3.zero);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void Eat() {
+            
+        }
     }
 }

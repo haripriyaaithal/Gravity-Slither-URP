@@ -18,10 +18,19 @@ namespace GS.Gameplay.Spawner {
             _spawnedObjectsList.Add(v_food.gameObject);
             v_food.transform.position = GetRandomPoint();
         }
+
         #endregion
 
         private Vector3 GetRandomPoint() {
-            return Random.onUnitSphere * _worldRadius;
+            // Return position where other objects are not present.
+            var v_randomPoint = default(Vector3);
+            var v_colliders = new Collider[3];
+            do {
+                v_randomPoint = Random.onUnitSphere * _worldRadius;
+            } while (Physics.OverlapSphereNonAlloc(v_randomPoint, 2f, v_colliders,
+                LayerMask.NameToLayer(GlobalConstants.World)) != 0);
+
+            return v_randomPoint;
         }
 
         #region Debug
