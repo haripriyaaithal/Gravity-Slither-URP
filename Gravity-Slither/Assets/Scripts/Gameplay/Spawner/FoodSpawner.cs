@@ -18,6 +18,7 @@ namespace GS.Gameplay.Spawner {
             var v_food = _pool.Get<Food>(_parent);
             _spawnedObjectsList.Add(v_food.gameObject);
             v_food.transform.position = GetRandomPoint();
+            v_food.Initialise();
         }
 
         #endregion
@@ -47,7 +48,7 @@ namespace GS.Gameplay.Spawner {
         }
 
         private void OnEatFood(Food food) {
-            ReturnToPool(food.gameObject);
+            LeanTween.delayedCall(0.5f, () => ReturnToPool(food.gameObject));
         }
 
         #region Debug
