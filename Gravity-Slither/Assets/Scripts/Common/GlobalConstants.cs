@@ -11,12 +11,14 @@
 
         public static string World = "World";
         public static string Food = "Food";
+        public static string Player = "Player";
 
         #endregion
 
         #region Pool max capacity
 
         public static int FoodMaxCapacity = 8;
+        public static int PlayerBodyMaxCapacity = 15;
 
         #endregion
     }

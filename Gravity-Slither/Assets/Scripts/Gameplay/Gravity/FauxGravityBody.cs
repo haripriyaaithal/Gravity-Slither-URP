@@ -2,19 +2,23 @@
 
 namespace GS.Gameplay.Gravity {
     public class FauxGravityBody : MonoBehaviour {
-        [SerializeField] private FauxGravityAttractor _attractor;
-        private Transform _myTransform;
+        private FauxGravityAttractor _attractor;
+        private Transform _transform;
         private Rigidbody _rigidbody;
 
-        private void Start() {
-            _myTransform = transform;
+        private void Awake() {
             _rigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void Start() {
+            _attractor = FauxGravityAttractor.GetInstance();
+            _transform = transform;
             _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             _rigidbody.useGravity = false;
         }
 
         private void Update() {
-            _attractor.Attract(_myTransform, _rigidbody);
+            _attractor.Attract(_transform, _rigidbody);
         }
     }
 }

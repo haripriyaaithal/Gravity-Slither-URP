@@ -20,14 +20,14 @@ namespace GS.Gameplay.Spawner {
         #endregion
 
         public void Initialise() {
-            EnableMeshRenderer(true);
+            EnableRendererAndCollider(true);
             OrientParticleEffectToNormal();
             AnimateSpawn();
         }
 
         public void Eat() {
             EventManager.OnEatFood(this);
-            EnableMeshRenderer(false);
+            EnableRendererAndCollider(false);
             _foodCollectParticles.Play();
         }
 
@@ -35,14 +35,14 @@ namespace GS.Gameplay.Spawner {
             LeanTween.scale(gameObject, Vector3.one, 0.3f).setFrom(Vector3.zero);
         }
 
-        private void EnableMeshRenderer(bool enable) {
+        private void EnableRendererAndCollider(bool enable) {
             _meshRenderer.enabled = enable;
             _sphereCollider.enabled = enable;
         }
 
         private void OrientParticleEffectToNormal() {
             var v_normal = _transform.position - Vector3.zero;
-            transform.rotation =
+            _transform.rotation =
                 Quaternion.LookRotation(v_normal, _transform.forward);
         }
     }

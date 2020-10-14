@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using GS.Common;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace GS.Gameplay.Spawner {
     public abstract class SpawnerBase : MonoBehaviour {
@@ -11,9 +12,19 @@ namespace GS.Gameplay.Spawner {
         protected UnityPool _pool;
         protected List<GameObject> _spawnedObjectsList;
 
+        #region Unity event methods
+
         protected virtual void Awake() {
             _spawnedObjectsList = new List<GameObject>();
         }
+
+        protected virtual void OnDestroy() {
+            ReturnAllToPool();
+            _spawnedObjectsList = null;
+            _pool?.Dispose();
+        }
+
+        #endregion
 
         protected virtual void Spawn() { }
 

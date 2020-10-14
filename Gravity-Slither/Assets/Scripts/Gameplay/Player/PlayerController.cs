@@ -7,6 +7,7 @@ namespace GS.Gameplay.Player {
     public class PlayerController : MonoBehaviour {
         [SerializeField] private float _movementSpeed = 15;
         private Rigidbody _rigidbody;
+        
         private bool _canMove;
         private InputManager _inputManager;
 

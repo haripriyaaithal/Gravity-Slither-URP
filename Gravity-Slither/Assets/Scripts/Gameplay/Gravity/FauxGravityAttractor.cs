@@ -4,6 +4,13 @@ namespace GS.Gameplay.Gravity {
     public class FauxGravityAttractor : MonoBehaviour {
         private float _gravity = -10f;
         private float _rotateSpeed = 50f;
+
+        private static FauxGravityAttractor _instance;
+
+        public static FauxGravityAttractor GetInstance() {
+            _instance = _instance ? _instance : FindObjectOfType<FauxGravityAttractor>();
+            return _instance;
+        } 
         
         public void Attract(Transform body, Rigidbody rb) {
             var v_gravityUp = (body.position - transform.position).normalized;
