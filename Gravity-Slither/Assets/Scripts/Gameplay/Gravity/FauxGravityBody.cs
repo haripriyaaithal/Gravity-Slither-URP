@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 namespace GS.Gameplay.Gravity {
+    [RequireComponent(typeof(Rigidbody))]
     public class FauxGravityBody : MonoBehaviour {
         private FauxGravityAttractor _attractor;
         private Transform _transform;

@@ -9,5 +9,22 @@ namespace GS.Common {
         public static void OnEatFood(Food food) {
             onEatFood?.Invoke(food);
         }
+
+        public delegate void GameStart();
+
+        public static event GameStart onGameStart;
+
+        public static void OnGameStart() {
+            onGameStart?.Invoke();
+        }
+        
+        public delegate void GameOver();
+
+        public static event GameOver onGameOver;
+
+        public static void OnGameOver() {
+            onGameOver?.Invoke();
+        }
+        
     }
 }

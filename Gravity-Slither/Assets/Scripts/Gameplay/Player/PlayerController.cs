@@ -7,7 +7,7 @@ namespace GS.Gameplay.Player {
     public class PlayerController : MonoBehaviour {
         [SerializeField] private float _movementSpeed = 15;
         private Rigidbody _rigidbody;
-        
+
         private bool _canMove;
         private InputManager _inputManager;
 
@@ -26,6 +26,7 @@ namespace GS.Gameplay.Player {
 #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBGL
             if (Input.anyKeyDown) {
                 _canMove = true;
+                EventManager.OnGameStart();
             }
 #elif UNITY_ANDROID || UNITY_IOS
             if (Input.touchCount > 0) {
@@ -43,18 +44,27 @@ namespace GS.Gameplay.Player {
         }
 
         private void OnCollisionEnter(Collision other) {
-            if (other.gameObject.CompareTag(GlobalConstants.World)) {
-                return;
-            }
-
-            if (other.gameObject.CompareTag(GlobalConstants.Food)) {
-                other.gameObject.GetComponent<Food>()?.Eat();
-            }
-            
-            // TODO: If tree, game over
+            HandleCollision(other);
             Debug.Log($"Collision detected with {other.gameObject.name}".ToAqua(), this);
         }
 
         #endregion
+
+        private void HandleCollision(Collision other) {
+            if (other.gameObject.CompareTag(GlobalConstants.Food)) {
+                other.gameObject.GetComponent<Food>()?.Eat();
+            } else if (other.gameObject.CompareTag(GlobalConstants.Tree)) {
+                // Game Over
+                GameOver();
+            } else if (other.gameObject.CompareTag(GlobalConstants.SnakeBody) &&
+                       other.transform.GetSiblingIndex() > 3) {
+                GameOver();
+            }
+        }
+
+        private void GameOver() {
+            _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            EventManager.OnGameOver();
+        }
     }
 }

@@ -12,7 +12,9 @@
         public static string World = "World";
         public static string Food = "Food";
         public static string Player = "Player";
-
+        public static string Tree = "Tree";
+        public static string SnakeBody = "SnakeBody";
+        
         #endregion
 
         #region Pool max capacity

@@ -11,7 +11,8 @@ namespace GS.Gameplay.Player {
 
         private UnityPool _pool;
         private List<Transform> _bodyList;
-
+        private bool _canMove =  true;
+        
         #region Unity event methods
 
         private void Awake() {
@@ -24,14 +25,18 @@ namespace GS.Gameplay.Player {
 
         private void OnEnable() {
             EventManager.onEatFood += OnEatFood;
+            EventManager.onGameOver += OnGameOver;
         }
 
         private void OnDisable() {
             EventManager.onEatFood -= OnEatFood;
+            EventManager.onGameOver -= OnGameOver;
         }
 
         private void FixedUpdate() {
-            Move();
+            if (_canMove) {
+                Move();
+            }
         }
 
         #endregion
@@ -58,6 +63,10 @@ namespace GS.Gameplay.Player {
                     _movementSmoothness * Time.deltaTime);
                 v_currentSphere.rotation = v_previousSphere.rotation;
             }
+        }
+
+        private void OnGameOver() {
+            _canMove = false;
         }
     }
 }
