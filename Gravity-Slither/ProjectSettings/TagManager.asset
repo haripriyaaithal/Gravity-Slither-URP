@@ -8,6 +8,7 @@ TagManager:
   - Food
   - Tree
   - SnakeBody
+  - Rock
   layers:
   - Default
   - TransparentFX

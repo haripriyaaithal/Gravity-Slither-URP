@@ -6,7 +6,8 @@ namespace GS.Gameplay.Spawner {
     public class RockSpawner : SpawnerBase {
         private WaitForSeconds _waitForSevenSeconds = new WaitForSeconds(7f);
         private WaitForSeconds _waitForAnimationComplete = new WaitForSeconds(0.4f);
-
+        private Coroutine _spawnCoroutine;
+        
         #region SpawnerBase methods
 
         protected override void Awake() {
@@ -29,11 +30,26 @@ namespace GS.Gameplay.Spawner {
         #region Unity event methods
 
         private void Start() {
-            StartCoroutine(SpawnRocks());
+            _spawnCoroutine = StartCoroutine(SpawnRocks());
+        }
+
+        private void OnEnable() {
+            EventManager.GetInstance().onGameOver += OnGameOver;
+        }
+
+        private void OnDisable() {
+            EventManager.GetInstance().onGameOver -= OnGameOver;
         }
 
         #endregion
 
+        private void OnGameOver() {
+            if (_spawnCoroutine != null) {
+                StopCoroutine(_spawnCoroutine);
+                _spawnCoroutine = null;
+            }
+        }
+        
         private IEnumerator SpawnRocks() {
             while (true) {
                 for (var v_index = 0; v_index < GlobalConstants.RockMaxCapacity; v_index++) {
