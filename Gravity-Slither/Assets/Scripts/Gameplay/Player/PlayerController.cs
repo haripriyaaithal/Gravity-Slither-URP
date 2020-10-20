@@ -55,10 +55,11 @@ namespace GS.Gameplay.Player {
             if (other.gameObject.CompareTag(GlobalConstants.Food)) {
                 other.gameObject.GetComponent<Food>()?.Eat();
             } else if (other.gameObject.CompareTag(GlobalConstants.Tree)) {
-                // Game Over
                 GameOver();
             } else if (other.gameObject.CompareTag(GlobalConstants.SnakeBody) &&
                        other.transform.GetSiblingIndex() > 3) {
+                GameOver();
+            } else if (other.gameObject.CompareTag(GlobalConstants.Rock)) {
                 GameOver();
             }
         }
