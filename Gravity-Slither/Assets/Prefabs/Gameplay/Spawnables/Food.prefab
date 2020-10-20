@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2239987313336990214}
   - component: {fileID: 7187863279649579201}
   - component: {fileID: 6581351720500400499}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Food
   m_TagString: Food
   m_Icon: {fileID: 0}
@@ -176,6 +176,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FoodCollectParticleEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5240920531748840179, guid: b6f186c56e3e9c042ac34a34cd33df63,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6f186c56e3e9c042ac34a34cd33df63, type: 3}

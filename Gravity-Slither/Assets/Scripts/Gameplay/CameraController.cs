@@ -8,7 +8,7 @@ namespace GS.Gameplay {
         private const float CAMERA_DISTANCE = 2.5f;
         private const float ZOOM_SPEED = 3f;
         private const float MOVEMENT_SMOOTHNESS_MULTIPLIER = 9f;
-        private const float SHAKE_INTENSITY = 0.1f;
+        private const float SHAKE_INTENSITY = 0.15f;
 
         private float _defaultFOV;
         private float _zoomOutFOV;
