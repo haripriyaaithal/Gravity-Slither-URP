@@ -20,5 +20,9 @@ namespace GS.Common {
 
             return v_manager;
         }
+        
+        public static void Reset() {
+            _managers?.Clear();
+        }
     }
 }
