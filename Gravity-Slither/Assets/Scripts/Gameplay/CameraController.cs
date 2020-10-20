@@ -1,4 +1,5 @@
-﻿using GS.Common;
+﻿using System.Collections;
+using GS.Common;
 using GS.Gameplay.Player;
 using UnityEngine;
 
@@ -7,7 +8,8 @@ namespace GS.Gameplay {
         private const float CAMERA_DISTANCE = 2.5f;
         private const float ZOOM_SPEED = 3f;
         private const float MOVEMENT_SMOOTHNESS_MULTIPLIER = 9f;
-            
+        private const float SHAKE_INTENSITY = 0.1f;
+
         private float _defaultFOV;
         private float _zoomOutFOV;
         private bool _isPlaying;
@@ -58,13 +60,43 @@ namespace GS.Gameplay {
             _transform.position = Vector3.Lerp(_transform.position, CAMERA_DISTANCE * v_direction,
                 Time.deltaTime * MOVEMENT_SMOOTHNESS_MULTIPLIER);
         }
-        
+
+        #region Event handlers
+
         private void OnGameStart() {
             _isPlaying = true;
         }
 
         private void OnGameOver() {
             _isPlaying = false;
+            ShakeCamera();
         }
+
+        #endregion
+
+        #region Camera Shake
+
+        private void ShakeCamera() {
+            StartCoroutine(StartShake(0.25f));
+        }
+
+        private IEnumerator StartShake(float seconds) {
+            var v_time = 0f;
+            var v_newPosition = default(Vector3);
+            while (v_time < seconds) {
+                var v_currentPosition = _transform.position;
+                v_newPosition.x = v_currentPosition.x + Random.Range(-SHAKE_INTENSITY, SHAKE_INTENSITY);
+                v_newPosition.y = v_currentPosition.y + Random.Range(-SHAKE_INTENSITY, SHAKE_INTENSITY);
+                v_newPosition.z = v_currentPosition.z + Random.Range(-SHAKE_INTENSITY, SHAKE_INTENSITY);
+
+                _transform.position = v_newPosition;
+
+                v_time += Time.deltaTime;
+
+                yield return null;
+            }
+        }
+
+        #endregion
     }
 }
