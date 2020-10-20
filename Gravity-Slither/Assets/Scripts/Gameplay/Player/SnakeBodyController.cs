@@ -24,13 +24,13 @@ namespace GS.Gameplay.Player {
         }
 
         private void OnEnable() {
-            EventManager.onEatFood += OnEatFood;
-            EventManager.onGameOver += OnGameOver;
+            EventManager.GetInstance().onEatFood += OnEatFood;
+            EventManager.GetInstance().onGameOver += OnGameOver;
         }
 
         private void OnDisable() {
-            EventManager.onEatFood -= OnEatFood;
-            EventManager.onGameOver -= OnGameOver;
+            EventManager.GetInstance().onEatFood -= OnEatFood;
+            EventManager.GetInstance().onGameOver -= OnGameOver;
         }
 
         private void FixedUpdate() {

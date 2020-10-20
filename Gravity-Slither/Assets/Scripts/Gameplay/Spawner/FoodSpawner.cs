@@ -30,11 +30,11 @@ namespace GS.Gameplay.Spawner {
         }
 
         private void OnEnable() {
-            EventManager.onEatFood += OnEatFood;
+            EventManager.GetInstance().onEatFood += OnEatFood;
         }
 
         private void OnDisable() {
-            EventManager.onEatFood -= OnEatFood;
+            EventManager.GetInstance().onEatFood -= OnEatFood;
         }
 
         #endregion

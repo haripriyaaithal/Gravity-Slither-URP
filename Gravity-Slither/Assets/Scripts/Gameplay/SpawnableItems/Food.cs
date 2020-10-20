@@ -26,7 +26,7 @@ namespace GS.Gameplay.Spawner {
         }
 
         public void Eat() {
-            EventManager.OnEatFood(this);
+            EventManager.GetInstance().OnEatFood(this);
             EnableRendererAndCollider(false);
             _foodCollectParticles.Play();
         }

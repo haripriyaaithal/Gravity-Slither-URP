@@ -26,11 +26,12 @@ namespace GS.Gameplay.Player {
 #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBGL
             if (Input.anyKeyDown) {
                 _canMove = true;
-                EventManager.OnGameStart();
+                EventManager.GetInstance().OnGameStart();
             }
 #elif UNITY_ANDROID || UNITY_IOS
             if (Input.touchCount > 0) {
                 _canMove = true;
+                EventManager.GetInstance().OnGameStart();
             }
 #endif
         }
@@ -64,7 +65,7 @@ namespace GS.Gameplay.Player {
 
         private void GameOver() {
             _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-            EventManager.OnGameOver();
+            EventManager.GetInstance().OnGameOver();
         }
     }
 }
