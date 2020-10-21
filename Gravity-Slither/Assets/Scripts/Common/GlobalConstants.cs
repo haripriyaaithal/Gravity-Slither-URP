@@ -19,9 +19,9 @@
 
         #region Pool max capacity
 
-        public static int FoodMaxCapacity = 8;
+        public static int FoodMaxCapacity = 5;
         public static int PlayerBodyMaxCapacity = 15;
-        public static int RockMaxCapacity = 6;
+        public static int RockMaxCapacity = 4;
 
         #endregion
     }
