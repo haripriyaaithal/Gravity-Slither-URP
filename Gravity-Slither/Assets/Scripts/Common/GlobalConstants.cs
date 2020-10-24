@@ -24,5 +24,7 @@
         public static int RockMaxCapacity = 4;
 
         #endregion
+
+        public static int ScoreMultiplier = 10;
     }
 }
