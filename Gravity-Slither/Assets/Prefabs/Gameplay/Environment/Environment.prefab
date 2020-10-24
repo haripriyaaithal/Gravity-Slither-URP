@@ -250,7 +250,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.51, y: 5.7131424, z: 3.7702985}
+  m_Size: {x: 1.81, y: 5.7131424, z: 1.72}
   m_Center: {x: -0.016926154, y: 2.29, z: -0.00022575258}
 --- !u!1 &8938225451725315708
 GameObject:
@@ -880,7 +880,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.51, y: 5.7131424, z: 3.7702985}
+  m_Size: {x: 1.81, y: 5.7131424, z: 1.72}
   m_Center: {x: -0.016926154, y: 2.29, z: -0.00022575258}
 --- !u!1 &8938225452214891471
 GameObject:
@@ -1333,7 +1333,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.51, y: 5.7131424, z: 2.63}
+  m_Size: {x: 1.81, y: 5.7131424, z: 1.72}
   m_Center: {x: -0.016926154, y: 2.29, z: -0.00022575258}
 --- !u!1 &8938225452540268021
 GameObject:
@@ -1428,7 +1428,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.51, y: 5.7131424, z: 2.63}
+  m_Size: {x: 1.81, y: 5.7131424, z: 1.72}
   m_Center: {x: -0.016926154, y: 2.29, z: -0.00022575258}
 --- !u!1 &8938225452627620370
 GameObject:
@@ -1575,7 +1575,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.51, y: 5.7131424, z: 2.63}
+  m_Size: {x: 1.81, y: 5.7131424, z: 1.72}
   m_Center: {x: -0.016926154, y: 2.29, z: -0.00022575258}
 --- !u!1 &8938225452840264020
 GameObject:
@@ -1670,7 +1670,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.51, y: 5.7131424, z: 2.63}
+  m_Size: {x: 1.81, y: 5.7131424, z: 1.72}
   m_Center: {x: -0.016926154, y: 2.29, z: -0.00022575258}
 --- !u!1 &8938225452850464619
 GameObject:
@@ -2016,7 +2016,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.51, y: 5.7131424, z: 3.7702985}
+  m_Size: {x: 1.81, y: 5.7131424, z: 1.72}
   m_Center: {x: -0.016926154, y: 2.29, z: -0.00022575258}
 --- !u!1 &8938225453337797845
 GameObject:
@@ -2111,7 +2111,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.51, y: 5.7131424, z: 2.63}
+  m_Size: {x: 1.81, y: 5.7131424, z: 1.72}
   m_Center: {x: -0.016926154, y: 2.29, z: -0.00022575258}
 --- !u!1 &8938225453431894836
 GameObject:
