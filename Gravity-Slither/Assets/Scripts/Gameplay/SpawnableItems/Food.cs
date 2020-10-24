@@ -1,4 +1,5 @@
-﻿using GS.Common;
+﻿using System;
+using GS.Common;
 using UnityEngine;
 
 namespace GS.Gameplay.Spawner {
@@ -17,6 +18,12 @@ namespace GS.Gameplay.Spawner {
             _transform = transform;
         }
 
+        private void OnCollisionEnter(Collision other) {
+            if (other.gameObject.CompareTag(GlobalConstants.Player)) {
+                EatFood();
+            }
+        }
+
         #endregion
 
         public void Initialise() {
@@ -25,7 +32,7 @@ namespace GS.Gameplay.Spawner {
             AnimateSpawn();
         }
 
-        public void Eat() {
+        private void EatFood() {
             EventManager.GetInstance().OnEatFood(this);
             EnableRendererAndCollider(false);
             _foodCollectParticles.Play();

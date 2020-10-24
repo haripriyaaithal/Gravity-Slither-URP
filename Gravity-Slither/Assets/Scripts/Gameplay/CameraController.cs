@@ -30,11 +30,13 @@ namespace GS.Gameplay {
         private void OnEnable() {
             EventManager.GetInstance().onGameStart += OnGameStart;
             EventManager.GetInstance().onGameOver += OnGameOver;
+            EventManager.GetInstance().onShakeCamera += ShakeCamera;
         }
 
         private void OnDisable() {
             EventManager.GetInstance().onGameStart -= OnGameStart;
             EventManager.GetInstance().onGameOver -= OnGameOver;
+            EventManager.GetInstance().onShakeCamera -= ShakeCamera;
         }
 
         private void FixedUpdate() {

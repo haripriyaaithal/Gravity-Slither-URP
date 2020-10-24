@@ -1,4 +1,5 @@
-﻿using GS.Common;
+﻿using System;
+using GS.Common;
 using GS.Gameplay.Inputs;
 using GS.Gameplay.Spawner;
 using UnityEngine;
@@ -46,27 +47,37 @@ namespace GS.Gameplay.Player {
 
         private void OnCollisionEnter(Collision other) {
             HandleCollision(other);
-            Debug.Log($"Collision detected with {other.gameObject.name}".ToAqua(), this);
+        }
+
+        private void OnEnable() {
+            EventManager.GetInstance().onGameOver += OnGameOver;
+        }
+
+        private void OnDisable() {
+            EventManager.GetInstance().onGameOver -= OnGameOver;
         }
 
         #endregion
 
         private void HandleCollision(Collision other) {
-            if (other.gameObject.CompareTag(GlobalConstants.Food)) {
-                other.gameObject.GetComponent<Food>()?.Eat();
-            } else if (other.gameObject.CompareTag(GlobalConstants.Tree)) {
+            if (other.gameObject.CompareTag(GlobalConstants.Tree)) {
                 GameOver();
             } else if (other.gameObject.CompareTag(GlobalConstants.SnakeBody) &&
                        other.transform.GetSiblingIndex() > 3) {
-                GameOver();
-            } else if (other.gameObject.CompareTag(GlobalConstants.Rock)) {
                 GameOver();
             }
         }
 
         private void GameOver() {
-            _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             EventManager.GetInstance().OnGameOver();
+        }
+
+        private void OnGameOver() {
+            _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        }
+
+        public float GetSpeed() {
+            return _movementSpeed;
         }
     }
 }
