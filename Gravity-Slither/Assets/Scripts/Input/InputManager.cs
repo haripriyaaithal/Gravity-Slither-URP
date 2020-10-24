@@ -20,10 +20,11 @@ namespace GS.Gameplay.Inputs {
 #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBGL
             ProcessPCInput();
 #elif UNITY_ANDROID || UNITY_IOS
-            HandleTouch();
+        // TODO: Check input according to player prefs    
+        HandleTouch();
 #endif
         }
-        
+
         public Vector3 GetMovementDirection() {
             // Don't allow movement opposite to current direction
             if (_x != 0) {
@@ -90,20 +91,41 @@ namespace GS.Gameplay.Inputs {
 
         private void SetMovementDirection() {
             if (_up > _down && _up > _left && _up > _right) {
-                _x = 0;
-                _z = 1;
+                MoveUp();
             } else if (_down > _up && _down > _left && _down > _right) {
-                _x = 0;
-                _z = -1;
+                MoveDown();
             } else if (_left > _up && _left > _down && _left > _right) {
-                _x = -1;
-                _z = 0;
+                MoveLeft();
             } else if (_right > _up && _right > _down && _right > _left) {
-                _x = 1;
-                _z = 0;
+                MoveRight();
             }
         }
         #endregion
+        
+        #region On screen navigation
+        
+        public void MoveUp() {
+            _x = 0;
+            _z = 1;
+        }
+
+        public void MoveDown() {
+            _x = 0;
+            _z = -1;
+        }
+
+        public void MoveLeft() {
+            _x = -1;
+            _z = 0;
+        }
+
+        public void MoveRight() {
+            _x = 1;
+            _z = 0;
+        }
+        #endregion
+        
 #endif
+        
     }
 }
