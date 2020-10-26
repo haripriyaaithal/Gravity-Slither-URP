@@ -4,9 +4,11 @@ using UnityEngine;
 namespace GS.Gameplay.Spawner {
     public class Rock : MonoBehaviour {
         [SerializeField] private ParticleSystem _particleEffects;
+        
         private MeshRenderer _meshRenderer;
         private SphereCollider _sphereCollider;
-
+        private bool _isPlayerInvisible;
+        
         #region Unity methods
 
         private void Awake() {
@@ -15,11 +17,19 @@ namespace GS.Gameplay.Spawner {
         }
 
         private void OnCollisionEnter(Collision other) {
-            if (other.gameObject.CompareTag(GlobalConstants.Player)) {
+            if (!_isPlayerInvisible && other.gameObject.CompareTag(GlobalConstants.Player)) {
                 EventManager.GetInstance().OnHitRock();
                 EventManager.GetInstance().OnShakeCamera();
                 AnimateDestroy();
             }
+        }
+
+        private void OnEnable() {
+            EventManager.GetInstance().onInvisiblePowerUp += OnInvisiblePowerUp;
+        }
+
+        private void OnDisable() {
+            EventManager.GetInstance().onInvisiblePowerUp -= OnInvisiblePowerUp;
         }
 
         #endregion
@@ -32,6 +42,10 @@ namespace GS.Gameplay.Spawner {
         private void EnableRendererAndCollider(bool enable) {
             _meshRenderer.enabled = enable;
             _sphereCollider.enabled = enable;
+        }
+
+        private void OnInvisiblePowerUp(bool enable) {
+            _isPlayerInvisible = enable;
         }
 
         #region Animations

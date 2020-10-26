@@ -6,11 +6,16 @@ namespace GS.Gameplay.Environment {
     public class DayNightSequence : MonoBehaviour {
         [SerializeField] private PlayableDirector _playableDirector;
         [SerializeField] private Color _skyboxColor;
-        
-        private int _tint = Shader.PropertyToID("_Tint");
+
+        private Color _defaultColor;
         private bool _canChangeColor;
 
         #region Unity event methods
+
+        private void Awake() {
+            _defaultColor = _skyboxColor;
+        }
+
         private void OnEnable() {
             EventManager.GetInstance().onGameStart += OnGameStart;
             EventManager.GetInstance().onGameOver += OnGameOver;
@@ -25,13 +30,14 @@ namespace GS.Gameplay.Environment {
             if (!_canChangeColor) {
                 return;
             }
-            RenderSettings.skybox.SetColor(_tint, _skyboxColor);
+            RenderSettings.skybox.SetColor(GlobalConstants.Tint, _skyboxColor);
         }
         
         #endregion
 
 
         private void OnGameStart() {
+            _skyboxColor = _defaultColor;
             _canChangeColor = true;
             _playableDirector.playOnAwake = false;
             _playableDirector.Play();

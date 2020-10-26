@@ -41,8 +41,10 @@ namespace GS.Gameplay.Spawner {
 
         private void OnEatFood(Food food) {
             LeanTween.delayedCall(0.5f, () => {
-                ReturnToPool(food.gameObject);
-                Spawn();
+                if (food != null) {
+                    ReturnToPool(food.gameObject);
+                    Spawn();
+                }
             });
         }
     }

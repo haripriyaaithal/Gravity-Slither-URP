@@ -5,18 +5,24 @@ using UnityEngine;
 
 namespace GS.Gameplay.Player {
     public class PlayerController : MonoBehaviour {
-        [SerializeField] private float _minSpeed = 12;
-        [SerializeField] private float _maxSpeed = 22;
-        [SerializeField] private float _movementSpeed = 15;
-        
+        [Range(9, 30)] [SerializeField] private float _maxSpeed = 22;
+        [SerializeField] private Material _defaultMaterial;
+        [SerializeField] private Material _invisibleMaterial;
+
         private Rigidbody _rigidbody;
+        private MeshRenderer _meshRenderer;
         private bool _canMove;
         private InputManager _inputManager;
-        private byte _foodCounter;
+        private ushort _foodCounter;
+        private float _movementSpeed = 12;
+        private int _delayedCallId;
+        private bool _isInvisible;
+
         #region Unity event functions
 
         private void Awake() {
             _rigidbody = GetComponent<Rigidbody>();
+            _meshRenderer = GetComponent<MeshRenderer>();
             _inputManager = ManagerFactory.Get<InputManager>();
             _foodCounter = 0;
         }
@@ -54,6 +60,7 @@ namespace GS.Gameplay.Player {
         private void OnEnable() {
             EventManager.GetInstance().onGameOver += OnGameOver;
             EventManager.GetInstance().onEatFood += OnEatFood;
+            MakePlayerVisible();
         }
 
         private void OnDisable() {
@@ -61,9 +68,19 @@ namespace GS.Gameplay.Player {
             EventManager.GetInstance().onEatFood -= OnEatFood;
         }
 
+        private void OnDestroy() {
+            LeanTween.cancel(_delayedCallId);
+            _inputManager = null;
+            _rigidbody = null;
+        }
+
         #endregion
 
         private void HandleCollision(Collision other) {
+            if (_isInvisible) {
+                return;
+            }
+
             if (other.gameObject.CompareTag(GlobalConstants.Tree)) {
                 GameOver();
             } else if (other.gameObject.CompareTag(GlobalConstants.SnakeBody) &&
@@ -79,27 +96,56 @@ namespace GS.Gameplay.Player {
         }
 
         private void OnGameOver() {
+            LeanTween.cancel(_delayedCallId);
             _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         }
 
         private void OnEatFood(Food food) {
+            _foodCounter++;
+            if (_foodCounter % 3 == 0) {
+                MakePlayerInvisible();
+                LeanTween.cancel(_delayedCallId);
+                _delayedCallId = LeanTween.delayedCall(5f, MakePlayerVisible).uniqueId;
+            }
+
             if (_movementSpeed >= _maxSpeed) {
                 return;
             }
-            
+
             // Increase speed for every 3rd food
-            if (_foodCounter < 3) {
-                _foodCounter++;
-            } else {
+            if (_foodCounter % 3 == 0) {
                 _movementSpeed += 0.5f;
-                _foodCounter = 0;
             }
+        }
+
+        #endregion
+
+        #region Invisible powerup
+
+        private void MakePlayerInvisible() {
+            _isInvisible = true;
+            EventManager.GetInstance().OnInvisiblePowerUp(true);
+            _meshRenderer.material = _invisibleMaterial;
+        }
+
+        private void MakePlayerVisible() {
+            _isInvisible = false;
+            EventManager.GetInstance().OnInvisiblePowerUp(false);
+            _meshRenderer.material = _defaultMaterial;
         }
 
         #endregion
 
         public float GetSpeed() {
             return _movementSpeed;
+        }
+
+        public Material GetDefaultMaterial() {
+            return _defaultMaterial;
+        }
+
+        public Material GetInvisibleMaterial() {
+            return _invisibleMaterial;
         }
     }
 }

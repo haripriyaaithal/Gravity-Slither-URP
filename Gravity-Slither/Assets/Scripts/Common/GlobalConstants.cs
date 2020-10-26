@@ -1,4 +1,6 @@
-﻿namespace GS.Common {
+﻿using UnityEngine;
+
+namespace GS.Common {
     public static class GlobalConstants {
         #region Scenes
 
@@ -25,6 +27,12 @@
 
         #endregion
 
+        #region Shader properties
+
+        public static readonly int Tint = Shader.PropertyToID("_Tint");
+
+        #endregion
+        
         public static int ScoreMultiplier = 10;
         public static int GameOverVibrateDuration = 150;
     }

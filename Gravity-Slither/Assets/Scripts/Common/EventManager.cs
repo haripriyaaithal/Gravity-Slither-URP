@@ -14,6 +14,8 @@ namespace GS.Common {
             return _instance;
         }
 
+        #region Spawnables
+
         public delegate void EatFoodEventHandler(Food food);
 
         public event EatFoodEventHandler onEatFood;
@@ -29,6 +31,10 @@ namespace GS.Common {
         public void OnHitRock() {
             onHitRock?.Invoke();
         }
+
+        #endregion
+
+        #region Gameplay State
 
         public delegate void GameStart();
 
@@ -47,6 +53,10 @@ namespace GS.Common {
             onGameOver?.Invoke();
         }
 
+        #endregion
+
+        #region Camera
+
         public delegate void ShakeCamera();
 
         public event ShakeCamera onShakeCamera;
@@ -54,5 +64,19 @@ namespace GS.Common {
         public void OnShakeCamera() {
             onShakeCamera?.Invoke();
         }
+
+        #endregion
+
+        #region Power up
+
+        public delegate void InvisiblePowerUp(bool shouldEnable);
+
+        public event InvisiblePowerUp onInvisiblePowerUp;
+
+        public void OnInvisiblePowerUp(bool shouldEnable) {
+            onInvisiblePowerUp?.Invoke(shouldEnable);
+        }
+
+        #endregion
     }
 }

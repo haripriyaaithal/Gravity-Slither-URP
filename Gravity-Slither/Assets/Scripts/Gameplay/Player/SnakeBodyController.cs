@@ -11,26 +11,32 @@ namespace GS.Gameplay.Player {
 
         private UnityPool _pool;
         private List<Transform> _bodyList;
-        private bool _canMove =  true;
-        
+        private List<MeshRenderer> _meshRenderers;
+        private bool _canMove = true;
+        private PlayerController _playerController;
+        private bool _transparentPowerUpEnabled;
         #region Unity event methods
 
         private void Awake() {
             var v_transform = transform;
             _pool = new UnityPool(_bodyPrefab, GlobalConstants.PlayerBodyMaxCapacity, v_transform);
+            _playerController = ManagerFactory.Get<PlayerController>();
             _bodyList = new List<Transform>(GlobalConstants.PlayerBodyMaxCapacity) {
-                GameObject.FindWithTag(GlobalConstants.Player).transform
+                _playerController.transform
             };
+            _meshRenderers = new List<MeshRenderer>(GlobalConstants.PlayerBodyMaxCapacity);
         }
 
         private void OnEnable() {
             EventManager.GetInstance().onEatFood += OnEatFood;
             EventManager.GetInstance().onGameOver += OnGameOver;
+            EventManager.GetInstance().onInvisiblePowerUp += OnInvisiblePowerUp;
         }
 
         private void OnDisable() {
             EventManager.GetInstance().onEatFood -= OnEatFood;
             EventManager.GetInstance().onGameOver -= OnGameOver;
+            EventManager.GetInstance().onInvisiblePowerUp -= OnInvisiblePowerUp;
         }
 
         private void FixedUpdate() {
@@ -41,11 +47,27 @@ namespace GS.Gameplay.Player {
 
         #endregion
 
+        #region Event handlers
+
         private void OnEatFood(Food food) {
             if (_bodyList.Count < GlobalConstants.PlayerBodyMaxCapacity) {
-                IncreaseBodyLength();   
+                IncreaseBodyLength();
             }
         }
+
+        private void OnGameOver() {
+            _canMove = false;
+        }
+
+        private void OnInvisiblePowerUp(bool shouldEnable) {
+            _transparentPowerUpEnabled = shouldEnable;
+            _meshRenderers.ForEach(mesh =>
+                mesh.material = shouldEnable
+                    ? _playerController.GetInvisibleMaterial()
+                    : _playerController.GetDefaultMaterial());
+        }
+
+        #endregion
 
         private void IncreaseBodyLength() {
             var v_body = _pool.Get<GameObject>(transform);
@@ -53,6 +75,12 @@ namespace GS.Gameplay.Player {
             v_transform.position = _bodyList.Last().position;
             v_transform.rotation = _bodyList.Last().rotation;
             _bodyList.Add(v_transform);
+            
+            var v_meshRenderer = v_transform.GetComponent<MeshRenderer>();
+            _meshRenderers.Add(v_meshRenderer);
+            if (_transparentPowerUpEnabled) {
+                v_meshRenderer.material = _playerController.GetInvisibleMaterial();
+            }
         }
 
         private void Move() {
@@ -63,10 +91,6 @@ namespace GS.Gameplay.Player {
                     _movementSmoothness * Time.deltaTime);
                 v_currentSphere.rotation = v_previousSphere.rotation;
             }
-        }
-
-        private void OnGameOver() {
-            _canMove = false;
         }
     }
 }
