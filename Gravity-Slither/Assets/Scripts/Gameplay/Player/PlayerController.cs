@@ -102,18 +102,14 @@ namespace GS.Gameplay.Player {
 
         private void OnEatFood(Food food) {
             _foodCounter++;
-            if (_foodCounter % 3 == 0) {
+            if (_foodCounter % GlobalConstants.FoodCountForPowerUp == 0) {
                 MakePlayerInvisible();
                 LeanTween.cancel(_delayedCallId);
-                _delayedCallId = LeanTween.delayedCall(5f, MakePlayerVisible).uniqueId;
+                _delayedCallId = LeanTween.delayedCall(GlobalConstants.InvisiblePowerUpTime, MakePlayerVisible).uniqueId;
             }
-
-            if (_movementSpeed >= _maxSpeed) {
-                return;
-            }
-
+            
             // Increase speed for every 3rd food
-            if (_foodCounter % 3 == 0) {
+            if ((_movementSpeed >= _maxSpeed) && _foodCounter % GlobalConstants.FoodCountForSpeedIncrease == 0) {
                 _movementSpeed += 0.5f;
             }
         }

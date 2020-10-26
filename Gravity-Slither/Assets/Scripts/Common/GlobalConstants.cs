@@ -17,6 +17,7 @@ namespace GS.Common {
         public static string Tree = "Tree";
         public static string SnakeBody = "SnakeBody";
         public static string Rock = "Rock";
+
         #endregion
 
         #region Pool max capacity
@@ -32,8 +33,16 @@ namespace GS.Common {
         public static readonly int Tint = Shader.PropertyToID("_Tint");
 
         #endregion
-        
+
+        #region Power Up
+
+        public static int InvisiblePowerUpTime = 10;
+        public static int FoodCountForPowerUp = 10;
+
+        #endregion
+
         public static int ScoreMultiplier = 10;
         public static int GameOverVibrateDuration = 150;
+        public static int FoodCountForSpeedIncrease = 3;
     }
 }
