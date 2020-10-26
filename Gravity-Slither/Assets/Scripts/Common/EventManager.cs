@@ -44,6 +44,14 @@ namespace GS.Common {
             onGameStart?.Invoke();
         }
 
+        public delegate void Revive();
+
+        public event Revive onRevive;
+
+        public void OnRevive() {
+            onRevive?.Invoke();
+        }
+
         public delegate void GameOver();
 
         public event GameOver onGameOver;

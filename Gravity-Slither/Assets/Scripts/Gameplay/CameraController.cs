@@ -29,12 +29,14 @@ namespace GS.Gameplay {
 
         private void OnEnable() {
             EventManager.GetInstance().onGameStart += OnGameStart;
+            EventManager.GetInstance().onRevive += OnRevive;
             EventManager.GetInstance().onGameOver += OnGameOver;
             EventManager.GetInstance().onShakeCamera += ShakeCamera;
         }
 
         private void OnDisable() {
             EventManager.GetInstance().onGameStart -= OnGameStart;
+            EventManager.GetInstance().onRevive -= OnRevive;
             EventManager.GetInstance().onGameOver -= OnGameOver;
             EventManager.GetInstance().onShakeCamera -= ShakeCamera;
         }
@@ -66,6 +68,10 @@ namespace GS.Gameplay {
         #region Event handlers
 
         private void OnGameStart() {
+            _isPlaying = true;
+        }
+
+        private void OnRevive() {
             _isPlaying = true;
         }
 

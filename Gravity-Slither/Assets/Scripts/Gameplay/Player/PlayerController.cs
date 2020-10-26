@@ -58,12 +58,14 @@ namespace GS.Gameplay.Player {
         }
 
         private void OnEnable() {
+            EventManager.GetInstance().onRevive += OnRevive;
             EventManager.GetInstance().onGameOver += OnGameOver;
             EventManager.GetInstance().onEatFood += OnEatFood;
             MakePlayerVisible();
         }
 
         private void OnDisable() {
+            EventManager.GetInstance().onRevive -= OnRevive;
             EventManager.GetInstance().onGameOver -= OnGameOver;
             EventManager.GetInstance().onEatFood -= OnEatFood;
         }
@@ -103,20 +105,29 @@ namespace GS.Gameplay.Player {
         private void OnEatFood(Food food) {
             _foodCounter++;
             if (_foodCounter % GlobalConstants.FoodCountForPowerUp == 0) {
-                MakePlayerInvisible();
-                LeanTween.cancel(_delayedCallId);
-                _delayedCallId = LeanTween.delayedCall(GlobalConstants.InvisiblePowerUpTime, MakePlayerVisible).uniqueId;
+                InvisiblePowerUp(GlobalConstants.InvisiblePowerUpTime);
             }
-            
+
             // Increase speed for every 3rd food
-            if ((_movementSpeed >= _maxSpeed) && _foodCounter % GlobalConstants.FoodCountForSpeedIncrease == 0) {
+            if ((_movementSpeed < _maxSpeed) && _foodCounter % GlobalConstants.FoodCountForSpeedIncrease == 0) {
                 _movementSpeed += 0.5f;
             }
+        }
+
+        private void OnRevive() {
+            _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            InvisiblePowerUp(GlobalConstants.RevivePowerUpTime);
         }
 
         #endregion
 
         #region Invisible powerup
+
+        private void InvisiblePowerUp(int powerUpTime) {
+            MakePlayerInvisible();
+            LeanTween.cancel(_delayedCallId);
+            _delayedCallId = LeanTween.delayedCall(powerUpTime, MakePlayerVisible).uniqueId;
+        }
 
         private void MakePlayerInvisible() {
             _isInvisible = true;

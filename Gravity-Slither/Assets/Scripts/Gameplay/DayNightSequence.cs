@@ -18,11 +18,13 @@ namespace GS.Gameplay.Environment {
 
         private void OnEnable() {
             EventManager.GetInstance().onGameStart += OnGameStart;
+            EventManager.GetInstance().onRevive += OnRevive;
             EventManager.GetInstance().onGameOver += OnGameOver;
         }
 
         private void OnDisable() {
             EventManager.GetInstance().onGameStart -= OnGameStart;
+            EventManager.GetInstance().onRevive -= OnRevive;
             EventManager.GetInstance().onGameOver -= OnGameOver;
         }
 
@@ -30,11 +32,14 @@ namespace GS.Gameplay.Environment {
             if (!_canChangeColor) {
                 return;
             }
+
             RenderSettings.skybox.SetColor(GlobalConstants.Tint, _skyboxColor);
         }
-        
+
         #endregion
 
+
+        #region Event handlers
 
         private void OnGameStart() {
             _skyboxColor = _defaultColor;
@@ -43,9 +48,16 @@ namespace GS.Gameplay.Environment {
             _playableDirector.Play();
         }
 
+        private void OnRevive() {
+            _canChangeColor = true;
+            _playableDirector.Resume();
+        }
+
         private void OnGameOver() {
             _canChangeColor = false;
             _playableDirector.Pause();
         }
+
+        #endregion
     }
 }

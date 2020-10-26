@@ -29,12 +29,14 @@ namespace GS.Gameplay.Player {
 
         private void OnEnable() {
             EventManager.GetInstance().onEatFood += OnEatFood;
+            EventManager.GetInstance().onRevive += OnRevive;
             EventManager.GetInstance().onGameOver += OnGameOver;
             EventManager.GetInstance().onInvisiblePowerUp += OnInvisiblePowerUp;
         }
 
         private void OnDisable() {
             EventManager.GetInstance().onEatFood -= OnEatFood;
+            EventManager.GetInstance().onRevive -= OnRevive;
             EventManager.GetInstance().onGameOver -= OnGameOver;
             EventManager.GetInstance().onInvisiblePowerUp -= OnInvisiblePowerUp;
         }
@@ -54,6 +56,10 @@ namespace GS.Gameplay.Player {
                 IncreaseBodyLength();
             }
         }
+
+        private void OnRevive() {
+            _canMove = true;
+        } 
 
         private void OnGameOver() {
             _canMove = false;

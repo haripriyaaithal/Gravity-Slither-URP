@@ -37,6 +37,7 @@ namespace GS.Common {
         #region Power Up
 
         public static int InvisiblePowerUpTime = 10;
+        public static int RevivePowerUpTime = 5;
         public static int FoodCountForPowerUp = 10;
 
         #endregion
