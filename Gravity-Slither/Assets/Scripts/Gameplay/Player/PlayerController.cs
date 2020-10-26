@@ -1,22 +1,24 @@
-﻿using System;
-using GS.Common;
+﻿using GS.Common;
 using GS.Gameplay.Inputs;
 using GS.Gameplay.Spawner;
 using UnityEngine;
 
 namespace GS.Gameplay.Player {
     public class PlayerController : MonoBehaviour {
+        [SerializeField] private float _minSpeed = 12;
+        [SerializeField] private float _maxSpeed = 22;
         [SerializeField] private float _movementSpeed = 15;
+        
         private Rigidbody _rigidbody;
-
         private bool _canMove;
         private InputManager _inputManager;
-
+        private byte _foodCounter;
         #region Unity event functions
 
         private void Awake() {
             _rigidbody = GetComponent<Rigidbody>();
             _inputManager = ManagerFactory.Get<InputManager>();
+            _foodCounter = 0;
         }
 
         private void Update() {
@@ -51,10 +53,12 @@ namespace GS.Gameplay.Player {
 
         private void OnEnable() {
             EventManager.GetInstance().onGameOver += OnGameOver;
+            EventManager.GetInstance().onEatFood += OnEatFood;
         }
 
         private void OnDisable() {
             EventManager.GetInstance().onGameOver -= OnGameOver;
+            EventManager.GetInstance().onEatFood -= OnEatFood;
         }
 
         #endregion
@@ -68,6 +72,8 @@ namespace GS.Gameplay.Player {
             }
         }
 
+        #region Event Handlers
+
         private void GameOver() {
             EventManager.GetInstance().OnGameOver();
         }
@@ -75,6 +81,22 @@ namespace GS.Gameplay.Player {
         private void OnGameOver() {
             _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         }
+
+        private void OnEatFood(Food food) {
+            if (_movementSpeed >= _maxSpeed) {
+                return;
+            }
+            
+            // Increase speed for every 3rd food
+            if (_foodCounter < 3) {
+                _foodCounter++;
+            } else {
+                _movementSpeed += 0.5f;
+                _foodCounter = 0;
+            }
+        }
+
+        #endregion
 
         public float GetSpeed() {
             return _movementSpeed;
