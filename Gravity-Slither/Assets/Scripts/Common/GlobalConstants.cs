@@ -26,5 +26,6 @@
         #endregion
 
         public static int ScoreMultiplier = 10;
+        public static int GameOverVibrateDuration = 150;
     }
 }
