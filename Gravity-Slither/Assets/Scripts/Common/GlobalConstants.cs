@@ -5,6 +5,7 @@ namespace GS.Common {
         #region Scenes
 
         public static string InitScene = "InitScene";
+        public static string MenuScene = "MainMenu";
         public static string GameplayScene = "Gameplay";
 
         #endregion
