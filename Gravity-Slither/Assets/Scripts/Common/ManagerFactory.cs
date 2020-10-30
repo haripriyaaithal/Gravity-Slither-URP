@@ -21,7 +21,7 @@ namespace GS.Common {
             return v_manager;
         }
         
-        public static void Reset() {
+        public static void Clear() {
             _managers?.Clear();
         }
     }

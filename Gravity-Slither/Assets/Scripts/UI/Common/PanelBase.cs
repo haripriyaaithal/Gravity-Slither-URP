@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GS.Common.UI {
+namespace GS.UI.Common {
     public abstract class PanelBase : MonoBehaviour {
         [SerializeField] private GameObject _panelRoot;
         [SerializeField] private bool _isStackable;

@@ -975,6 +975,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5136890945371992533}
+  - component: {fileID: 7928700593742368991}
   m_Layer: 5
   m_Name: Panel - Settings
   m_TagString: Untagged
@@ -1002,6 +1003,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7928700593742368991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136890945371992532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f853125f53e0d1448eccb0c65277498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _panelRoot: {fileID: 5136890944660965880}
+  _isStackable: 1
+  _shouldHidePreviousPanel: 1
 --- !u!1 &5136890945411131929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,7 +1633,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5136890945682995573}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7928700593742368991}
+        m_TargetAssemblyTypeName: GS.UI.SettingsUIPanel, Assembly-CSharp
+        m_MethodName: OnClickBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5136890945763506867
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace GS.Common.UI {
+namespace GS.UI.Common {
     public class UIFactory {
         private static List<PanelBase> _panels = new List<PanelBase>();
 

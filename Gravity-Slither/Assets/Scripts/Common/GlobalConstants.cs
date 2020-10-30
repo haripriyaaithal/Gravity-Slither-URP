@@ -7,6 +7,7 @@ namespace GS.Common {
         public static string InitScene = "InitScene";
         public static string MenuScene = "MainMenu";
         public static string GameplayScene = "Gameplay";
+        public static int MinSceneLoadTime = 1;
 
         #endregion
 

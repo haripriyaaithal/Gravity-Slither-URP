@@ -97,7 +97,7 @@ RectTransform:
   m_Children:
   - {fileID: 1729502922452236047}
   m_Father: {fileID: 1729502922479504196}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 1729502922301196101}
   - component: {fileID: 1729502922301196102}
   m_Layer: 5
-  m_Name: Button - StartGame
+  m_Name: Button - Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1729502922301196101}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5880013007420574420}
+        m_TargetAssemblyTypeName: GS.UI.MainMenuUIPanel, Assembly-CSharp
+        m_MethodName: OnClickPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1729502922332644299
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +339,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aab13bb1f00f77446a55c7a0cd5b0577, type: 2}
   m_sharedMaterial: {fileID: 1092312199157079510, guid: aab13bb1f00f77446a55c7a0cd5b0577,
@@ -596,6 +608,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1729502923154099178}
   - {fileID: 1729502922197750521}
   m_Father: {fileID: 1729502922451999817}
   m_RootOrder: 1
@@ -632,7 +645,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1729502923154099178}
   - {fileID: 1729502922805610359}
   m_Father: {fileID: 1729502922451999817}
   m_RootOrder: 0
@@ -943,7 +955,7 @@ RectTransform:
   m_Children:
   - {fileID: 1729502922169435183}
   m_Father: {fileID: 1729502922494667957}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.026502706}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -1182,7 +1194,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1729502923133487831}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5880013007420574420}
+        m_TargetAssemblyTypeName: GS.UI.MainMenuUIPanel, Assembly-CSharp
+        m_MethodName: OnClickQuit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1729502923154099179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,12 +1238,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1729502922836773691}
-  m_Father: {fileID: 1729502922494667957}
+  m_Father: {fileID: 1729502922479504196}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -139, y: 130}
+  m_AnchoredPosition: {x: -139, y: -195.35992}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1729502923154099183
@@ -1302,7 +1326,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1729502923154099176}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5880013007420574420}
+        m_TargetAssemblyTypeName: GS.UI.MainMenuUIPanel, Assembly-CSharp
+        m_MethodName: OnClickSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1729502923277511148
 GameObject:
   m_ObjectHideFlags: 0
@@ -1557,7 +1593,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1729502923295571906}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5880013007420574420}
+        m_TargetAssemblyTypeName: GS.UI.MainMenuUIPanel, Assembly-CSharp
+        m_MethodName: OnClickAchievements
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1729502923800670461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,6 +1615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1729502923800670460}
+  - component: {fileID: 5880013007420574420}
   m_Layer: 5
   m_Name: Panel - MainMenu
   m_TagString: Untagged
@@ -1594,6 +1643,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5880013007420574420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729502923800670461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feae7492c5bccea4e88d98fada04a2ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _panelRoot: {fileID: 1729502922451999818}
+  _isStackable: 1
+  _shouldHidePreviousPanel: 1
 --- !u!1 &1729502923966649821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,4 +1777,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1729502923966649810}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5880013007420574420}
+        m_TargetAssemblyTypeName: GS.UI.MainMenuUIPanel, Assembly-CSharp
+        m_MethodName: OnClickLeaderboard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

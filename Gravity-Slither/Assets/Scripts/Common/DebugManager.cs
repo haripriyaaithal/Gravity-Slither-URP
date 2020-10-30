@@ -1,7 +1,5 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace GS.Common.Debug {
     public class DebugManager : MonoBehaviour {
@@ -25,8 +23,12 @@ namespace GS.Common.Debug {
         }
         
         public void Restart() {
-            ManagerFactory.Reset();
-            SceneManager.LoadScene(GlobalConstants.GameplayScene);
+            ManagerFactory.Get<SceneLoadManager>().LoadSceneAsync(GlobalConstants.GameplayScene);
+            ManagerFactory.Clear();
+        }
+
+        public void OnClickMainMenu() {
+            ManagerFactory.Get<SceneLoadManager>().LoadSceneAsync(GlobalConstants.MenuScene);
         }
 
         public void SetScore(string score) {

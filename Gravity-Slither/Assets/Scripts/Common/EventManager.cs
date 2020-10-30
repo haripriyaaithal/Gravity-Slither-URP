@@ -1,4 +1,5 @@
 ﻿using GS.Gameplay.Spawner;
+using UnityEngine.SceneManagement;
 
 namespace GS.Common {
     public class EventManager {
@@ -13,6 +14,26 @@ namespace GS.Common {
 
             return _instance;
         }
+
+        #region Scene management
+
+        public delegate void OnSceneLoadEventHandler(Scene scene);
+
+        public event OnSceneLoadEventHandler onSceneLoaded;
+
+        public void OnSceneLoaded(Scene scene) {
+            onSceneLoaded?.Invoke(scene);
+        }
+
+        public delegate void OnSceneUnLoadEventHandler(Scene scene);
+
+        public event OnSceneUnLoadEventHandler onSceneUnLoaded;
+
+        public void OnSceneUnLoaded(Scene scene) {
+            onSceneUnLoaded?.Invoke(scene);
+        }
+
+        #endregion
 
         #region Spawnables
 

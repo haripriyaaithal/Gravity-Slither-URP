@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace GS.Common.UI {
+namespace GS.UI.Common {
     public class PanelStacker {
         private static List<PanelBase> _panels = new List<PanelBase>();
 
@@ -49,8 +49,9 @@ namespace GS.Common.UI {
         }
 
         private static void ClosePreviousPanel(PanelBase panel) {
-            if (_panels.Last() != null && _panels.Last().IsOpen() && panel.ShouldHidePreviousPanel()) {
-                _panels.Last().OnPanelClosed();
+            var v_previousPanel = _panels.Count > 0 ? _panels[_panels.Count - 1] : default(PanelBase);
+            if (panel.ShouldHidePreviousPanel() && v_previousPanel != default && v_previousPanel.IsOpen()) {
+                v_previousPanel.OnPanelClosed();
             }
         }
     }

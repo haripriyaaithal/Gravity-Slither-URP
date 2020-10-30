@@ -26,6 +26,7 @@ namespace GS.Gameplay.Environment {
             EventManager.GetInstance().onGameStart -= OnGameStart;
             EventManager.GetInstance().onRevive -= OnRevive;
             EventManager.GetInstance().onGameOver -= OnGameOver;
+            RenderSettings.skybox.SetColor(GlobalConstants.Tint, _defaultColor);
         }
 
         private void Update() {
