@@ -378,7 +378,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 600, y: -402.77087}
+  m_AnchoredPosition: {x: 600, y: -410.271}
   m_SizeDelta: {x: 1084.689, y: 131}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5136890944823902039
@@ -564,7 +564,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 600, y: -528.2711}
+  m_AnchoredPosition: {x: 600, y: -535.77124}
   m_SizeDelta: {x: 360, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5136890944852906768
@@ -1018,6 +1018,9 @@ MonoBehaviour:
   _panelRoot: {fileID: 5136890944660965880}
   _isStackable: 1
   _shouldHidePreviousPanel: 1
+  _controlsRoot: {fileID: 5136890944823902041}
+  _vibrationRoot: {fileID: 5136890944852906770}
+  _googlePlayLoginButton: {fileID: 5136890946303464077}
 --- !u!1 &5136890945411131929
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,7 +2127,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 75
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -2416,7 +2419,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 600, y: -198.63531}
+  m_AnchoredPosition: {x: 600, y: -206.13544}
   m_SizeDelta: {x: 1084.6919, y: 247.27063}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5136890946284798409
@@ -2530,7 +2533,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 600, y: -633.27136}
+  m_AnchoredPosition: {x: 600, y: -640.7715}
   m_SizeDelta: {x: 450, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5136890946301651413
@@ -2616,7 +2619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 600, y: -741.2716}
+  m_AnchoredPosition: {x: 600, y: -748.7717}
   m_SizeDelta: {x: 433.92, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5136890946303464075

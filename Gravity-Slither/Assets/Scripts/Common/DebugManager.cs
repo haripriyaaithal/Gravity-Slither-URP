@@ -9,11 +9,11 @@ namespace GS.Common.Debug {
         #region Unity event methods
 
         private void OnEnable() {
-            EventManager.GetInstance().onGameOver += OnGameOver;
+            //EventManager.GetInstance().onGameOver += OnGameOver;
         }
 
         private void OnDisable() {
-            EventManager.GetInstance().onGameOver -= OnGameOver;
+            //EventManager.GetInstance().onGameOver -= OnGameOver;
         }
 
         #endregion

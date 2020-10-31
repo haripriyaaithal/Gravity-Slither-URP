@@ -44,13 +44,13 @@ namespace GS.Gameplay {
         private void OnHitRock() {
             _score = (_score > GlobalConstants.ScoreMultiplier * 10) ? (_score - GlobalConstants.ScoreMultiplier * 10) : 0;
             // TODO: Update score in UI
-            ManagerFactory.Get<DebugManager>().SetScore(_score.ToString());
+            //ManagerFactory.Get<DebugManager>().SetScore(_score.ToString());
         }
 
         private void AddScore(float score) {
             _score += score;
             // TODO: Update score in UI
-            ManagerFactory.Get<DebugManager>().SetScore(_score.ToString());
+            //ManagerFactory.Get<DebugManager>().SetScore(_score.ToString());
         }
         
         public double GetScore() {
