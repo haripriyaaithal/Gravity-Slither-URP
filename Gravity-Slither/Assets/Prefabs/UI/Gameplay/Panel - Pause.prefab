@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 1606710474058713006}
   - component: {fileID: 3168601441500034093}
   m_Layer: 5
-  m_Name: Button - StartGame
+  m_Name: Button - ResumeGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -329,7 +329,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1606710474058713006}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8932757875472127036}
+        m_TargetAssemblyTypeName: GS.UI.GameplayPauseUIPanel, Assembly-CSharp
+        m_MethodName: OnClickResume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1906524146735214540
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +562,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6619791447670219289}
+  - component: {fileID: 8932757875472127036}
   m_Layer: 5
   m_Name: Panel - Pause
   m_TagString: Untagged
@@ -577,6 +590,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8932757875472127036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2860826891922834032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e7728cdd3335c74c8ecb84faac231d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _panelRoot: {fileID: 5759509143289161059}
+  _isStackable: 1
+  _shouldHidePreviousPanel: 0
 --- !u!1 &3905578822604549623
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,7 +724,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8916921720252668866}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8932757875472127036}
+        m_TargetAssemblyTypeName: GS.UI.GameplayPauseUIPanel, Assembly-CSharp
+        m_MethodName: OnClickRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4749554996741804742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,7 +1166,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7487178410341887935}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8932757875472127036}
+        m_TargetAssemblyTypeName: GS.UI.GameplayPauseUIPanel, Assembly-CSharp
+        m_MethodName: OnClickMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6779736010539159153
 GameObject:
   m_ObjectHideFlags: 0

@@ -119,7 +119,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3515075121194601203}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1905043698256310362}
+        m_TargetAssemblyTypeName: GS.UI.GameOverUIPanel, Assembly-CSharp
+        m_MethodName: OnClickMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1604248036734697504
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +326,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1550862884154380313}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1905043698256310362}
+        m_TargetAssemblyTypeName: GS.UI.GameOverUIPanel, Assembly-CSharp
+        m_MethodName: OnClickRevive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1854566768482990203
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,6 +559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6347773122006627758}
+  - component: {fileID: 1905043698256310362}
   m_Layer: 5
   m_Name: Panel - GameOver
   m_TagString: Untagged
@@ -562,6 +587,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1905043698256310362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2628512138221934023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5d70363be1a7944a6ac4f64123db98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _panelRoot: {fileID: 5486519276886700756}
+  _isStackable: 1
+  _shouldHidePreviousPanel: 0
 --- !u!1 &3889575182462270016
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +721,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8680316878080920693}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1905043698256310362}
+        m_TargetAssemblyTypeName: GS.UI.GameOverUIPanel, Assembly-CSharp
+        m_MethodName: OnClickRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4526151029917354234
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +853,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2757374346387172279}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1905043698256310362}
+        m_TargetAssemblyTypeName: GS.UI.GameOverUIPanel, Assembly-CSharp
+        m_MethodName: OnClickShare
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4757035345230089421
 GameObject:
   m_ObjectHideFlags: 0
