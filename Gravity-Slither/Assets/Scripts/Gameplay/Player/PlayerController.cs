@@ -38,7 +38,7 @@ namespace GS.Gameplay.Player {
                 EventManager.GetInstance().OnGameStart();
             }
 #elif UNITY_ANDROID || UNITY_IOS
-            if (Input.touchCount > 0) {
+            if (Input.touchCount > 0 && Settings.GetInstance().GetSettings().GetControls() == GlobalConstants.ControlType.Touch) {
                 _canMove = true;
                 EventManager.GetInstance().OnGameStart();
             }
@@ -59,6 +59,7 @@ namespace GS.Gameplay.Player {
 
         private void OnEnable() {
             EventManager.GetInstance().onRevive += OnRevive;
+            EventManager.GetInstance().onGameStart += OnGameStart;
             EventManager.GetInstance().onGameOver += OnGameOver;
             EventManager.GetInstance().onEatFood += OnEatFood;
             MakePlayerVisible();
@@ -66,6 +67,7 @@ namespace GS.Gameplay.Player {
 
         private void OnDisable() {
             EventManager.GetInstance().onRevive -= OnRevive;
+            EventManager.GetInstance().onGameStart -= OnGameStart;
             EventManager.GetInstance().onGameOver -= OnGameOver;
             EventManager.GetInstance().onEatFood -= OnEatFood;
         }
@@ -93,7 +95,14 @@ namespace GS.Gameplay.Player {
 
         #region Event Handlers
 
+        private void OnGameStart() {
+            _canMove = true;
+        }
+        
         private void GameOver() {
+            if (Settings.GetInstance().GetSettings().ShouldVibrate()) {
+                Vibration.Vibrate(GlobalConstants.GameOverVibrateDuration);
+            }
             EventManager.GetInstance().OnGameOver();
         }
 

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace GS.Gameplay.Inputs {
     public class InputManager : MonoBehaviour {
@@ -20,22 +19,23 @@ namespace GS.Gameplay.Inputs {
 #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBGL
             ProcessPCInput();
 #elif UNITY_ANDROID || UNITY_IOS
-        // TODO: Check input according to player prefs    
-        HandleTouch();
+            if (GS.Common.Settings.GetInstance().GetSettings().GetControls() == GS.Common.GlobalConstants.ControlType.Touch) {
+                HandleTouch();
+            }
 #endif
         }
 
         public Vector3 GetMovementDirection() {
             // Don't allow movement opposite to current direction
             if (_x != 0) {
-                if (Math.Abs(_movementDirection.x - _x * -1) > 0.0001f) {
+                if (System.Math.Abs(_movementDirection.x - _x * -1) > 0.0001f) {
                     _movementDirection.x = _x;
                     _movementDirection.z = 0;
                 } else {
                     _x *= -1;
                 }
             } else if (_z != 0) {
-                if (Math.Abs(_movementDirection.z - _z * -1) > 0.0001f) {
+                if (System.Math.Abs(_movementDirection.z - _z * -1) > 0.0001f) {
                     _movementDirection.z = _z;
                     _movementDirection.x = 0f;
                 } else {
@@ -72,6 +72,7 @@ namespace GS.Gameplay.Inputs {
 
                 if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(0).phase == TouchPhase.Canceled) {
                     _end = Input.GetTouch(0).position;
+                    Debug.Log("Calculating touch gesture".ToBrown());
                     CalculateGestureDirection();
                 }
             }
@@ -92,11 +93,15 @@ namespace GS.Gameplay.Inputs {
         private void SetMovementDirection() {
             if (_up > _down && _up > _left && _up > _right) {
                 MoveUp();
+                Debug.Log("Gesture Up".ToBrown());
             } else if (_down > _up && _down > _left && _down > _right) {
+                Debug.Log("Gesture Down".ToBrown());
                 MoveDown();
             } else if (_left > _up && _left > _down && _left > _right) {
+                Debug.Log("Gesture Left".ToBrown());
                 MoveLeft();
             } else if (_right > _up && _right > _down && _right > _left) {
+                Debug.Log("Gesture Right".ToBrown());
                 MoveRight();
             }
         }

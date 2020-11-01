@@ -18,7 +18,6 @@ namespace GS.Common {
         public static string Player = "Player";
         public static string Tree = "Tree";
         public static string SnakeBody = "SnakeBody";
-        public static string Rock = "Rock";
 
         #endregion
 
@@ -41,6 +40,18 @@ namespace GS.Common {
         public static int InvisiblePowerUpTime = 10;
         public static int RevivePowerUpTime = 5;
         public static int FoodCountForPowerUp = 10;
+
+        #endregion
+
+        #region Settings
+
+        public enum ControlType {
+            Touch = 1,
+            OnScreen = 2
+        }
+
+        public static float DefaultMusicVolume = 4f;
+        public static float DefaultSoundVolume = 10f;
 
         #endregion
 

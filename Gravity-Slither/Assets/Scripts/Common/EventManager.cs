@@ -86,7 +86,6 @@ namespace GS.Common {
         public event GameOver onGameOver;
 
         public void OnGameOver() {
-            Vibration.Vibrate(GlobalConstants.GameOverVibrateDuration);
             onGameOver?.Invoke();
         }
 
