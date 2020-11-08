@@ -42,4 +42,15 @@ namespace GS.UI.Common {
             }
         }
     }
+    
+    [System.Serializable]
+    public class AnimationUIElement {
+        public RectTransform target;
+        [Space]
+        public RectTransform fromRect;
+        public Vector3 endPosition;
+        [Space]
+        public float time;
+        public float delay;
+    }
 }

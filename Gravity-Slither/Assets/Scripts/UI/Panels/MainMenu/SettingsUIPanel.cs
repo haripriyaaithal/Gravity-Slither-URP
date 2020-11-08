@@ -1,7 +1,7 @@
-﻿using GS.Audio;
+﻿using System.Collections.Generic;
+using GS.Audio;
 using GS.Common;
 using GS.UI.Common;
-using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,10 +13,17 @@ namespace GS.UI {
         [SerializeField] private Toggle _onScreenToggle;
         [SerializeField] private Toggle _vibrationToggle;
 
-        [Header("WebGL Specific Objects")] 
-        [SerializeField] private GameObject _controlsRoot;
+        [Header("UI Transitions")] 
+        [SerializeField] private AnimationUIElement _panelHeader;
+        [SerializeField] private AnimationUIElement _panelBody;
+        [SerializeField] private CanvasGroup _panelCanvasGroup;
+
+        [Header("WebGL Specific Objects")] [SerializeField]
+        private GameObject _controlsRoot;
+
         [SerializeField] private GameObject _vibrationRoot;
 
+        private List<int> _tweenIdList;
         private SettingsData _settingsData;
 
         private void Awake() {
@@ -26,18 +33,53 @@ namespace GS.UI {
 #endif
         }
 
+        #region UI Transitions
+
+        private void AnimateUIOpen() {
+            LeanTween.alphaCanvas(_panelCanvasGroup, 1, 0);
+
+            LeanTween.move(_panelHeader.target, _panelHeader.fromRect.anchoredPosition3D, 0);
+            _tweenIdList.Add(LeanTween.move(_panelHeader.target, _panelHeader.endPosition, _panelHeader.time)
+                .setFrom(_panelHeader.fromRect.anchoredPosition3D).setEaseOutExpo().setDelay(_panelHeader.delay).uniqueId);
+
+            LeanTween.move(_panelBody.target, _panelBody.fromRect.anchoredPosition3D, 0);
+            _tweenIdList.Add(LeanTween.move(_panelBody.target, _panelBody.endPosition, _panelBody.time)
+                .setFrom(_panelBody.fromRect.anchoredPosition3D).setEaseOutExpo().setDelay(_panelBody.delay).uniqueId);
+            _panelCanvasGroup.blocksRaycasts = true;
+        }
+
+        private void AnimateUIClose(System.Action callback) {
+            _panelCanvasGroup.blocksRaycasts = false;
+            _tweenIdList.Add(LeanTween.move(_panelHeader.target, _panelHeader.fromRect.anchoredPosition3D, _panelHeader.time)
+                .setFrom(_panelHeader.target.anchoredPosition3D).setEaseOutExpo().uniqueId);
+            _tweenIdList.Add(LeanTween.move(_panelBody.target, _panelBody.fromRect.anchoredPosition3D, _panelBody.time)
+                .setFrom(_panelBody.target.anchoredPosition3D).setEaseOutExpo().setOnComplete(
+                    () => { callback?.Invoke(); }).uniqueId);
+            LeanTween.alphaCanvas(_panelCanvasGroup, 0, 0.1f);
+        }
+
+        #endregion
+
+        #region Panel Stacker implementation
+
         public override void OnPanelOpened() {
             UpdateUI();
             _musicSlider.onValueChanged.AddListener(OnMusicSliderValueChanged);
             _soundSlider.onValueChanged.AddListener(OnSoundSliderValueChanged);
+            _tweenIdList = _tweenIdList ?? new List<int>();
+            _tweenIdList.ForEach(LeanTween.cancel);
+            _tweenIdList.Clear();
             base.OnPanelOpened();
+            AnimateUIOpen();
         }
 
         public override void OnPanelClosed() {
-            base.OnPanelClosed();
+            AnimateUIClose(base.OnPanelClosed);
             _musicSlider.onValueChanged.RemoveListener(OnMusicSliderValueChanged);
             _soundSlider.onValueChanged.RemoveListener(OnSoundSliderValueChanged);
         }
+
+        #endregion
 
         private void UpdateUI() {
             _settingsData = _settingsData ?? Settings.GetInstance().GetSettings();
@@ -51,6 +93,7 @@ namespace GS.UI {
         #region UI Callbacks
 
         public void OnClickBack() {
+            _panelCanvasGroup.blocksRaycasts = false;
             PlayBackSound();
             PanelStacker.RemovePanel(this);
         }
