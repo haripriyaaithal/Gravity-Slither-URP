@@ -602,6 +602,7 @@ MonoBehaviour:
   _panelRoot: {fileID: 5486519276886700756}
   _isStackable: 1
   _shouldHidePreviousPanel: 0
+  _scoreText: {fileID: 1366669208020820187}
   _reviveButton: {fileID: 2896035576280064922}
   _shareButton: {fileID: 2510395585333826652}
 --- !u!1 &3889575182462270016
@@ -1458,7 +1459,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Your score: 4,400'
+  m_text: 'Score: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aab13bb1f00f77446a55c7a0cd5b0577, type: 2}
   m_sharedMaterial: {fileID: 1092312199157079510, guid: aab13bb1f00f77446a55c7a0cd5b0577,
@@ -1486,12 +1487,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 91.8
+  m_fontSize: 120
   m_fontSizeBase: 91.8
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 120
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1502,7 +1503,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

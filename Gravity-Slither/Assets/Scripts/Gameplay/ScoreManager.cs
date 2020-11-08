@@ -1,7 +1,8 @@
 ﻿using GS.Common;
-using GS.Common.Debug;
 using GS.Gameplay.Player;
 using GS.Gameplay.Spawner;
+using GS.UI;
+using GS.UI.Common;
 using UnityEngine;
 
 namespace GS.Gameplay {
@@ -43,16 +44,21 @@ namespace GS.Gameplay {
 
         private void OnHitRock() {
             _score = (_score > GlobalConstants.ScoreMultiplier * 10) ? (_score - GlobalConstants.ScoreMultiplier * 10) : 0;
-            // TODO: Update score in UI
-            //ManagerFactory.Get<DebugManager>().SetScore(_score.ToString());
+            UpdateScoreUI();
         }
 
         private void AddScore(float score) {
             _score += score;
-            // TODO: Update score in UI
-            //ManagerFactory.Get<DebugManager>().SetScore(_score.ToString());
+            UpdateScoreUI();
         }
-        
+
+        private void UpdateScoreUI() {
+            var v_gameplayUIPanel = UIFactory.Get<GameplayUIPanel>();
+            if (v_gameplayUIPanel != null) {
+                v_gameplayUIPanel.SetScore(_score.ToString());
+            }
+        }
+
         public double GetScore() {
             return _score;
         }

@@ -6,6 +6,10 @@ namespace GS.UI {
     public class GameplayUIPanel : PanelBase {
 
         [SerializeField] private TextMeshProUGUI _scoreText;
+
+        public void SetScore(string score) {
+            _scoreText.text = score;
+        }
         
         #region UI Callbacks
 
