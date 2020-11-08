@@ -117,8 +117,12 @@ namespace GS.Gameplay.Player {
         }
 
         private void OnEatFood(Food food) {
-            _foodCounter++;
-            if (_foodCounter % GlobalConstants.FoodCountForPowerUp == 0) {
+
+            if (!_isInvisible) {
+                _foodCounter++;
+            }
+            
+            if (!_isInvisible && _foodCounter % GlobalConstants.FoodCountForPowerUp == 0) {
                 InvisiblePowerUp(GlobalConstants.InvisiblePowerUpTime);
             }
 
@@ -136,7 +140,7 @@ namespace GS.Gameplay.Player {
         #endregion
 
         #region Invisible powerup
-
+        // TODO: Move this to PowerUpManager
         private void InvisiblePowerUp(int powerUpTime) {
             MakePlayerInvisible();
             LeanTween.cancel(_delayedCallId);
@@ -146,13 +150,13 @@ namespace GS.Gameplay.Player {
         private void MakePlayerInvisible() {
             _isInvisible = true;
             EventManager.GetInstance().OnInvisiblePowerUp(true);
-            _meshRenderer.material = _invisibleMaterial;
+            _meshRenderer.sharedMaterial = _invisibleMaterial;
         }
 
         private void MakePlayerVisible() {
             _isInvisible = false;
             EventManager.GetInstance().OnInvisiblePowerUp(false);
-            _meshRenderer.material = _defaultMaterial;
+            _meshRenderer.sharedMaterial = _defaultMaterial;
         }
 
         #endregion

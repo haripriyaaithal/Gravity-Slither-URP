@@ -68,7 +68,7 @@ namespace GS.Gameplay.Player {
         private void OnInvisiblePowerUp(bool shouldEnable) {
             _transparentPowerUpEnabled = shouldEnable;
             _meshRenderers.ForEach(mesh =>
-                mesh.material = shouldEnable
+                mesh.sharedMaterial = shouldEnable
                     ? _playerController.GetInvisibleMaterial()
                     : _playerController.GetDefaultMaterial());
         }
@@ -85,7 +85,7 @@ namespace GS.Gameplay.Player {
             var v_meshRenderer = v_transform.GetComponent<MeshRenderer>();
             _meshRenderers.Add(v_meshRenderer);
             if (_transparentPowerUpEnabled) {
-                v_meshRenderer.material = _playerController.GetInvisibleMaterial();
+                v_meshRenderer.sharedMaterial = _playerController.GetInvisibleMaterial();
             }
         }
 
