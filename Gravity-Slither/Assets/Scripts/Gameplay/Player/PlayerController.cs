@@ -1,4 +1,5 @@
-﻿using GS.Common;
+﻿using GS.Audio;
+using GS.Common;
 using GS.Gameplay.Inputs;
 using GS.Gameplay.Spawner;
 using UnityEngine;
@@ -102,6 +103,10 @@ namespace GS.Gameplay.Player {
         private void GameOver() {
             if (Settings.GetInstance().GetSettings().ShouldVibrate()) {
                 Vibration.Vibrate(GlobalConstants.GameOverVibrateDuration);
+            }
+            var v_audioManager = ManagerFactory.Get<AudioManager>();
+            if (v_audioManager != null) {
+                v_audioManager.PlaySnakeHitSound();
             }
             EventManager.GetInstance().OnGameOver();
         }

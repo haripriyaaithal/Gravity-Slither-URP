@@ -33,16 +33,7 @@ namespace GS.Common {
             }
 
             UnityEngine.Debug.LogFormat("Saving settings: {0}".ToGreen(), v_settingsJson);
-            CloneSettings(settingsData);
             PlayerPrefs.SetString(nameof(Settings), v_settingsJson);
-        }
-
-        private void CloneSettings(SettingsData settingsData) {
-            _currentSettings = _currentSettings ?? GetSettings();
-            _currentSettings.SetControls(settingsData.GetControls());
-            _currentSettings.SetVibration(settingsData.ShouldVibrate());
-            _currentSettings.SetMusicVolume(settingsData.GetMusicVolume());
-            _currentSettings.SetSoundVolume(settingsData.GetSoundVolume());
         }
     }
 

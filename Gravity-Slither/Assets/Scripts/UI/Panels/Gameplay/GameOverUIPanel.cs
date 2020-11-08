@@ -1,13 +1,13 @@
-﻿using System;
-using GS.Common;
+﻿using GS.Common;
 using GS.UI.Common;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace GS.UI {
     public class GameOverUIPanel : PanelBase {
-        [Header("WebGL Specific Objects")] 
-        [SerializeField] private Button _reviveButton;
+        [Header("WebGL Specific Objects")] [SerializeField]
+        private Button _reviveButton;
+
         [SerializeField] private Button _shareButton;
 
         private void Awake() {
@@ -20,16 +20,21 @@ namespace GS.UI {
         #region UI Callbacks
 
         public void OnClickMenu() {
+            PlayTouchSound();
             LoadScene(GlobalConstants.MenuScene);
         }
 
         public void OnClickRestart() {
+            PlayTouchSound();
             LoadScene(GlobalConstants.GameplayScene);
         }
 
-        public void OnClickShare() { }
+        public void OnClickShare() {
+            PlayTouchSound();
+        }
 
         public void OnClickRevive() {
+            PlayTouchSound();
             // TODO: Show reward ad
             EventManager.GetInstance().OnRevive();
             PanelStacker.RemovePanel(this);

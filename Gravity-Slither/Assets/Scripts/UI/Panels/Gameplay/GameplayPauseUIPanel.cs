@@ -6,15 +6,18 @@ namespace GS.UI {
         #region UI Callback
 
         public void OnClickResume() {
+            PlayBackSound();
             EventManager.GetInstance().OnResumeGame();
             PanelStacker.RemovePanel(this);
         }
 
         public void OnClickRestart() {
+            PlayTouchSound();
             LoadScene(GlobalConstants.GameplayScene);
         }
 
         public void OnClickMainMenu() {
+            PlayTouchSound();
             LoadScene(GlobalConstants.MenuScene);
         }
 

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using GS.Audio;
+using GS.Common;
+using UnityEngine;
 
 namespace GS.UI.Common {
     public abstract class PanelBase : MonoBehaviour {
@@ -24,6 +26,20 @@ namespace GS.UI.Common {
 
         public bool ShouldHidePreviousPanel() {
             return _shouldHidePreviousPanel;
+        }
+
+        protected void PlayTouchSound() {
+            var v_audioManager = ManagerFactory.Get<AudioManager>();
+            if (v_audioManager != null) {
+                v_audioManager.PlayTouchSound();
+            }
+        }
+
+        protected void PlayBackSound() {
+            var v_audioManager = ManagerFactory.Get<AudioManager>();
+            if (v_audioManager != null) {
+                v_audioManager.PlayBackSound();
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using GS.Common;
+﻿using GS.Audio;
+using GS.Common;
 using UnityEngine;
 
 namespace GS.Gameplay.Spawner {
@@ -19,6 +20,10 @@ namespace GS.Gameplay.Spawner {
         private void OnCollisionEnter(Collision other) {
             if (!_isPlayerInvisible && other.gameObject.CompareTag(GlobalConstants.Player)) {
                 EventManager.GetInstance().OnHitRock();
+                var v_audioManager = ManagerFactory.Get<AudioManager>();
+                if (v_audioManager != null) {
+                    v_audioManager.PlaySnakeHitSound();
+                }
                 EventManager.GetInstance().OnShakeCamera();
                 AnimateDestroy();
             }

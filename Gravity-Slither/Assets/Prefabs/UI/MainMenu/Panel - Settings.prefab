@@ -754,19 +754,7 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7928700593742368991}
-        m_TargetAssemblyTypeName: GS.UI.SettingsUIPanel, Assembly-CSharp
-        m_MethodName: OnSoundSliderValueChanged
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &5136890945168473519
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,8 +843,8 @@ MonoBehaviour:
   _panelRoot: {fileID: 5136890944660965880}
   _isStackable: 1
   _shouldHidePreviousPanel: 1
-  _musicSlider: {fileID: 5136890945158587366}
-  _soundSlider: {fileID: 5136890946427409410}
+  _musicSlider: {fileID: 5136890946427409410}
+  _soundSlider: {fileID: 5136890945158587366}
   _touchToggle: {fileID: 5136890944660743802}
   _onScreenToggle: {fileID: 5136890944759760617}
   _vibrationToggle: {fileID: 5136890944852906768}
@@ -2819,19 +2807,7 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7928700593742368991}
-        m_TargetAssemblyTypeName: GS.UI.SettingsUIPanel, Assembly-CSharp
-        m_MethodName: OnMusicSliderValueChanged
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &5136890946463748680
 GameObject:
   m_ObjectHideFlags: 0

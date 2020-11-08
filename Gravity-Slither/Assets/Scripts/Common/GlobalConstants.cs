@@ -50,8 +50,8 @@ namespace GS.Common {
             OnScreen = 2
         }
 
-        public static float DefaultMusicVolume = 4f;
-        public static float DefaultSoundVolume = 10f;
+        public static float DefaultMusicVolume = 0.4f;
+        public static float DefaultSoundVolume = 1f;
 
         #endregion
 

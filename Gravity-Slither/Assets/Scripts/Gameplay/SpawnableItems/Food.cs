@@ -1,4 +1,4 @@
-﻿using System;
+﻿using GS.Audio;
 using GS.Common;
 using UnityEngine;
 
@@ -21,6 +21,10 @@ namespace GS.Gameplay.Spawner {
         private void OnCollisionEnter(Collision other) {
             if (other.gameObject.CompareTag(GlobalConstants.Player)) {
                 EatFood();
+                var v_audioManager = ManagerFactory.Get<AudioManager>();
+                if (v_audioManager != null) {
+                    v_audioManager.PlayFoodCollectSound();
+                }
             }
         }
 

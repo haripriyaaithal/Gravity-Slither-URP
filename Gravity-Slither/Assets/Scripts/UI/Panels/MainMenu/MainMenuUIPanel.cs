@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 namespace GS.UI {
     public class MainMenuUIPanel : PanelBase {
-        [Header("WebGL Specific Objects")] 
-        [SerializeField] private Button _leaderboardButton;
+        [Header("WebGL Specific Objects")] [SerializeField]
+        private Button _leaderboardButton;
+
         [SerializeField] private Button _achievementsButton;
         [SerializeField] private Button _settingsButton;
         [SerializeField] private Button _webGLSettingsButton;
@@ -23,21 +24,28 @@ namespace GS.UI {
         #region UI Callbacks
 
         public void OnClickPlay() {
+            PlayTouchSound();
             var v_sceneManager = ManagerFactory.Get<SceneLoadManager>();
             if (v_sceneManager != null) {
                 v_sceneManager.LoadSceneAsync(GlobalConstants.GameplayScene);
             }
         }
 
-        public void OnClickLeaderboard() { }
+        public void OnClickLeaderboard() {
+            PlayTouchSound();
+        }
 
-        public void OnClickAchievements() { }
+        public void OnClickAchievements() {
+            PlayTouchSound();
+        }
 
         public void OnClickQuit() {
+            PlayTouchSound();
             Application.Quit();
         }
 
         public void OnClickSettings() {
+            PlayTouchSound();
             var v_settingsPanel = UIFactory.Get<SettingsUIPanel>();
             if (v_settingsPanel != null) {
                 PanelStacker.AddPanel(v_settingsPanel);
