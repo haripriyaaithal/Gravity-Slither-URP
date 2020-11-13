@@ -14,7 +14,9 @@ namespace GS.Common {
             if (isAndroid()) {
                 _vibrator.Call("vibrate");
             } else {
+#if !UNITY_WEBGL
                 Handheld.Vibrate();
+#endif
             }
         }
 
@@ -23,7 +25,9 @@ namespace GS.Common {
             if (isAndroid()) {
                 _vibrator.Call("vibrate", milliseconds);
             } else {
+#if !UNITY_WEBGL
                 Handheld.Vibrate();
+#endif
             }
         }
 
@@ -31,7 +35,9 @@ namespace GS.Common {
             if (isAndroid()) {
                 _vibrator.Call("vibrate", pattern, repeat);
             } else {
+#if !UNITY_WEBGL
                 Handheld.Vibrate();
+#endif
             }
         }
 
