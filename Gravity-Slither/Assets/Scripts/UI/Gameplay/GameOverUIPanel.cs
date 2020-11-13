@@ -30,25 +30,26 @@ namespace GS.UI {
         #region UI Transitions
 
         private void AnimateUIOpen() {
-            LeanTween.alphaCanvas(_panelCanvasGroup, 1, 0);
+            LeanTween.alphaCanvas(_panelCanvasGroup, 0, 0);
+            LeanTween.alphaCanvas(_panelCanvasGroup, 1, 0.6f);
 
             LeanTween.move(_panelHeader.target, _panelHeader.fromRect.anchoredPosition3D, 0);
-            LeanTween.move(_panelHeader.target, _panelHeader.endPosition, _panelHeader.time)
-                .setFrom(_panelHeader.fromRect.anchoredPosition3D).setEaseOutExpo().setDelay(_panelHeader.delay);
+            _tweenIdList.Add(LeanTween.move(_panelHeader.target, _panelHeader.endPosition, _panelHeader.time)
+                .setFrom(_panelHeader.fromRect.anchoredPosition3D).setEaseOutExpo().setDelay(_panelHeader.delay).uniqueId);
 
             LeanTween.move(_panelBody.target, _panelBody.fromRect.anchoredPosition3D, 0);
-            LeanTween.move(_panelBody.target, _panelBody.endPosition, _panelBody.time)
-                .setFrom(_panelBody.fromRect.anchoredPosition3D).setEaseOutExpo().setDelay(_panelBody.delay);
+            _tweenIdList.Add(LeanTween.move(_panelBody.target, _panelBody.endPosition, _panelBody.time)
+                .setFrom(_panelBody.fromRect.anchoredPosition3D).setEaseOutExpo().setDelay(_panelBody.delay).uniqueId);
             _panelCanvasGroup.blocksRaycasts = true;
         }
 
         private void AnimateUIClose(System.Action callback) {
             _panelCanvasGroup.blocksRaycasts = false;
-            LeanTween.move(_panelHeader.target, _panelHeader.fromRect.anchoredPosition3D, _panelHeader.time)
-                .setFrom(_panelHeader.target.anchoredPosition3D).setEaseOutExpo();
-            LeanTween.move(_panelBody.target, _panelBody.fromRect.anchoredPosition3D, _panelBody.time)
+            _tweenIdList.Add(LeanTween.move(_panelHeader.target, _panelHeader.fromRect.anchoredPosition3D, _panelHeader.time)
+                .setFrom(_panelHeader.target.anchoredPosition3D).setEaseOutExpo().uniqueId);
+            _tweenIdList.Add(LeanTween.move(_panelBody.target, _panelBody.fromRect.anchoredPosition3D, _panelBody.time)
                 .setFrom(_panelBody.target.anchoredPosition3D).setEaseOutExpo().setOnComplete(
-                    () => { callback?.Invoke(); });
+                    () => { callback?.Invoke(); }).uniqueId);
             
             LeanTween.alphaCanvas(_panelCanvasGroup, 0, 0.1f);
         }

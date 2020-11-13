@@ -647,13 +647,13 @@ MonoBehaviour:
     fromRect: {fileID: 3011213164212927167}
     endPosition: {x: 0, y: -150, z: 0}
     time: 0.3
-    delay: 0
+    delay: 0.5
   _panelBody:
     target: {fileID: 6953728346700767216}
     fromRect: {fileID: 2793381053713609441}
     endPosition: {x: 0, y: -120, z: 0}
     time: 0.3
-    delay: 0
+    delay: 0.5
   _panelCanvasGroup: {fileID: 825651607627838439}
 --- !u!1 &3889575182462270016
 GameObject:

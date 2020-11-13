@@ -2,6 +2,8 @@
 using GS.Common;
 using GS.Gameplay.Inputs;
 using GS.Gameplay.Spawner;
+using GS.UI;
+using GS.UI.Common;
 using UnityEngine;
 
 namespace GS.Gameplay.Player {
@@ -128,6 +130,9 @@ namespace GS.Gameplay.Player {
             
             if (!_isInvisible && _foodCounter % GlobalConstants.FoodCountForPowerUp == 0) {
                 InvisiblePowerUp(GlobalConstants.InvisiblePowerUpTime);
+                var v_powerUpTimerUI = UIFactory.Get<PowerUpTimerUI>();
+                PanelStacker.AddPanel(v_powerUpTimerUI);
+                v_powerUpTimerUI.Initialize(GlobalConstants.InvisiblePowerUpTime);
             }
 
             // Increase speed for every 3rd food
@@ -139,6 +144,9 @@ namespace GS.Gameplay.Player {
         private void OnRevive() {
             _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             InvisiblePowerUp(GlobalConstants.RevivePowerUpTime);
+            var v_powerUpTimerUI = UIFactory.Get<PowerUpTimerUI>();
+            PanelStacker.AddPanel(v_powerUpTimerUI);
+            v_powerUpTimerUI.Initialize(GlobalConstants.RevivePowerUpTime);
         }
 
         private void OnGamePause() {

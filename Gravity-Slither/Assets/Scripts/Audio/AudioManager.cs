@@ -8,7 +8,6 @@ namespace GS.Audio {
         [SerializeField] private AudioClip _backSound;
         [SerializeField] private AudioClip _foodCollectSound;
         [SerializeField] private AudioClip _snakeHitSound;
-        [SerializeField] private AudioClip _timerSound;
 
         [SerializeField] private AudioSource _musicSource;
         [SerializeField] private AudioSource _soundSource;
@@ -43,12 +42,6 @@ namespace GS.Audio {
         public void PlaySnakeHitSound() {
             _soundSource.Stop();
             _soundSource.PlayOneShot(_snakeHitSound);
-        }
-
-        public void PlayTimerSound() {
-            _soundSource.Stop();
-            _soundSource.clip = _timerSound;
-            _soundSource.Play();
         }
     }
 }
