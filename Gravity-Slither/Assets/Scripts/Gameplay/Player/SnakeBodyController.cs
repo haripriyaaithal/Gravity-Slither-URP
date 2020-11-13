@@ -15,6 +15,7 @@ namespace GS.Gameplay.Player {
         private bool _canMove = true;
         private PlayerController _playerController;
         private bool _transparentPowerUpEnabled;
+        
         #region Unity event methods
 
         private void Awake() {
@@ -30,6 +31,8 @@ namespace GS.Gameplay.Player {
         private void OnEnable() {
             EventManager.GetInstance().onEatFood += OnEatFood;
             EventManager.GetInstance().onRevive += OnRevive;
+            EventManager.GetInstance().onPause += OnGamePause;
+            EventManager.GetInstance().onResume += OnResume;
             EventManager.GetInstance().onGameOver += OnGameOver;
             EventManager.GetInstance().onInvisiblePowerUp += OnInvisiblePowerUp;
         }
@@ -37,6 +40,8 @@ namespace GS.Gameplay.Player {
         private void OnDisable() {
             EventManager.GetInstance().onEatFood -= OnEatFood;
             EventManager.GetInstance().onRevive -= OnRevive;
+            EventManager.GetInstance().onPause -= OnGamePause;
+            EventManager.GetInstance().onResume -= OnResume;
             EventManager.GetInstance().onGameOver -= OnGameOver;
             EventManager.GetInstance().onInvisiblePowerUp -= OnInvisiblePowerUp;
         }
@@ -58,11 +63,19 @@ namespace GS.Gameplay.Player {
         }
 
         private void OnRevive() {
-            _canMove = true;
+            ResumeMovement();
         } 
 
         private void OnGameOver() {
-            _canMove = false;
+            StopMovement();
+        }
+
+        private void OnGamePause() {
+            StopMovement();
+        }
+
+        private void OnResume() {
+            ResumeMovement();
         }
 
         private void OnInvisiblePowerUp(bool shouldEnable) {
@@ -97,6 +110,14 @@ namespace GS.Gameplay.Player {
                     _movementSmoothness * Time.deltaTime);
                 v_currentSphere.rotation = v_previousSphere.rotation;
             }
+        }
+
+        private void StopMovement() {
+            _canMove = false;
+        }
+
+        private void ResumeMovement() {
+            _canMove = true;
         }
     }
 }
