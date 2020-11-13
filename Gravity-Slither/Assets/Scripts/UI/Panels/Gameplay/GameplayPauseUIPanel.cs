@@ -44,6 +44,7 @@ namespace GS.UI {
         #region Panel Stacker implementation
 
         public override void OnPanelOpened() {
+            EventManager.GetInstance().OnPause();
             base.OnPanelOpened();
             _tweenIdList = _tweenIdList ?? new List<int>();
             _tweenIdList.ForEach(LeanTween.cancel);

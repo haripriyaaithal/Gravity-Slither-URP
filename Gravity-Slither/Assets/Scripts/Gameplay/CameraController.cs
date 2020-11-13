@@ -29,6 +29,8 @@ namespace GS.Gameplay {
 
         private void OnEnable() {
             EventManager.GetInstance().onGameStart += OnGameStart;
+            EventManager.GetInstance().onPause += OnGamePause;
+            EventManager.GetInstance().onResume += OnResume;
             EventManager.GetInstance().onRevive += OnRevive;
             EventManager.GetInstance().onGameOver += OnGameOver;
             EventManager.GetInstance().onShakeCamera += ShakeCamera;
@@ -36,6 +38,8 @@ namespace GS.Gameplay {
 
         private void OnDisable() {
             EventManager.GetInstance().onGameStart -= OnGameStart;
+            EventManager.GetInstance().onPause -= OnGamePause;
+            EventManager.GetInstance().onResume -= OnResume;
             EventManager.GetInstance().onRevive -= OnRevive;
             EventManager.GetInstance().onGameOver -= OnGameOver;
             EventManager.GetInstance().onShakeCamera -= ShakeCamera;
@@ -80,6 +84,13 @@ namespace GS.Gameplay {
             ShakeCamera();
         }
 
+        private void OnGamePause() {
+            _isPlaying = false;
+        }
+
+        private void OnResume() {
+            _isPlaying = true;
+        }
         #endregion
 
         #region Camera Shake

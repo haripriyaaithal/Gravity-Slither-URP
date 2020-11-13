@@ -8,11 +8,7 @@ namespace GS.Common {
         private EventManager() { }
 
         public static EventManager GetInstance() {
-            if (_instance == null) {
-                _instance = new EventManager();
-            }
-
-            return _instance;
+            return _instance ?? (_instance = new EventManager());
         }
 
         #region Scene management
@@ -63,6 +59,14 @@ namespace GS.Common {
 
         public void OnGameStart() {
             onGameStart?.Invoke();
+        }
+
+        public delegate void Pause();
+
+        public event Pause onPause;
+
+        public void OnPause() {
+            onPause?.Invoke();
         }
 
         public delegate void Resume();

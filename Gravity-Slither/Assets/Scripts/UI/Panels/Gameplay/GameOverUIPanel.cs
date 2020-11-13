@@ -58,6 +58,7 @@ namespace GS.UI {
         #region Panel Stacker implementation
 
         public override void OnPanelOpened() {
+            _scoreText.text = $"Score: {ScoreManager.GetInstance().GetScore()}";
             base.OnPanelOpened();
             _tweenIdList = _tweenIdList ?? new List<int>();
             _tweenIdList.ForEach(LeanTween.cancel);
@@ -66,7 +67,6 @@ namespace GS.UI {
         }
 
         public override void OnPanelClosed() {
-            _scoreText.text = $"Score: {ScoreManager.GetInstance().GetScore()}";
             AnimateUIClose(base.OnPanelClosed);
         }
 

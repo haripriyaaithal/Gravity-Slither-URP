@@ -61,6 +61,8 @@ namespace GS.Gameplay.Player {
         private void OnEnable() {
             EventManager.GetInstance().onRevive += OnRevive;
             EventManager.GetInstance().onGameStart += OnGameStart;
+            EventManager.GetInstance().onResume += OnResume;
+            EventManager.GetInstance().onPause += OnGamePause;
             EventManager.GetInstance().onGameOver += OnGameOver;
             EventManager.GetInstance().onEatFood += OnEatFood;
             MakePlayerVisible();
@@ -69,6 +71,8 @@ namespace GS.Gameplay.Player {
         private void OnDisable() {
             EventManager.GetInstance().onRevive -= OnRevive;
             EventManager.GetInstance().onGameStart -= OnGameStart;
+            EventManager.GetInstance().onResume -= OnResume;
+            EventManager.GetInstance().onPause -= OnGamePause;
             EventManager.GetInstance().onGameOver -= OnGameOver;
             EventManager.GetInstance().onEatFood -= OnEatFood;
         }
@@ -135,6 +139,16 @@ namespace GS.Gameplay.Player {
         private void OnRevive() {
             _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             InvisiblePowerUp(GlobalConstants.RevivePowerUpTime);
+        }
+
+        private void OnGamePause() {
+            _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            LeanTween.pauseAll();
+        }
+
+        private void OnResume() {
+            _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            LeanTween.resumeAll();
         }
 
         #endregion
