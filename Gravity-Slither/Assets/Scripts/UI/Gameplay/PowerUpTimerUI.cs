@@ -17,11 +17,11 @@ namespace GS.UI {
             LeanTween.cancel(_tweenId);
             _fillImage.fillAmount = 1f;
             UpdateText(seconds);
-            LeanTween.value(gameObject, (time) => {
+            _tweenId = LeanTween.value(gameObject, (time) => {
                     _fillImage.fillAmount = time / seconds;
                     UpdateText((int) time);
                 }, seconds, 0, seconds)
-                .setOnComplete(() => PanelStacker.RemovePanel(this));
+                .setOnComplete(() => PanelStacker.RemovePanel(this)).uniqueId;
         }
 
         private void UpdateText(int seconds) {

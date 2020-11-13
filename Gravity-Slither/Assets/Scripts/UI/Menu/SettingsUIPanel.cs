@@ -136,7 +136,10 @@ namespace GS.UI {
 
         public void OnClickShowTutorial() {
             PlayTouchSound();
-            // TODO: Open tutorials
+            var v_tutorialPanel = UIFactory.Get<TutorialsUIPanel>();
+            if (v_tutorialPanel != null) {
+                PanelStacker.AddPanel(v_tutorialPanel);
+            }
         }
 
         #endregion
