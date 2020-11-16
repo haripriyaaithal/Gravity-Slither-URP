@@ -15,6 +15,7 @@ namespace GS.Gameplay.Player {
         private bool _canMove = true;
         private PlayerController _playerController;
         private bool _transparentPowerUpEnabled;
+        private byte _foodCounter;
         
         #region Unity event methods
 
@@ -57,9 +58,11 @@ namespace GS.Gameplay.Player {
         #region Event handlers
 
         private void OnEatFood(Food food) {
-            if (_bodyList.Count < GlobalConstants.PlayerBodyMaxCapacity) {
-                IncreaseBodyLength();
-            }
+            _foodCounter++;
+            // Increase body length for every 2 food collected
+            if (_bodyList.Count >= GlobalConstants.PlayerBodyMaxCapacity || _foodCounter < 2) { return; }
+            IncreaseBodyLength();
+            _foodCounter = 0;
         }
 
         private void OnRevive() {
