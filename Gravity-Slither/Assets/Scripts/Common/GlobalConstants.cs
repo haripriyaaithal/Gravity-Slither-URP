@@ -58,5 +58,7 @@ namespace GS.Common {
         public static int ScoreMultiplier = 10;
         public static int GameOverVibrateDuration = 150;
         public static int FoodCountForSpeedIncrease = 3;
+
+        public static string TutorialFinished = "TutorialFinished";
     }
 }

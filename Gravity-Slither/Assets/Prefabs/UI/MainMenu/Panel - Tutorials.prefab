@@ -1006,7 +1006,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: When 10 food items are collected, invisible powerup will be activated automatically
-    for 10 seconds. During this snake will not collide with any obstacles.
+    for 10 seconds. During this, snake will not collide with any obstacles.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aab13bb1f00f77446a55c7a0cd5b0577, type: 2}
   m_sharedMaterial: {fileID: 1092312199157079510, guid: aab13bb1f00f77446a55c7a0cd5b0577,

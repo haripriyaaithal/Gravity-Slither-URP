@@ -78,15 +78,18 @@ namespace GS.UI {
         #region UI Callbacks
 
         public void OnClickBack() {
+            PlayBackSound();
             PanelStacker.RemovePanel(this);
         }
 
         public void OnClickNext() {
+            PlayTouchSound();
             _toScrollValue = Mathf.Clamp(_toScrollValue + (1 / 5f), 0, 1);
             AnimateScroll();
         }
 
         public void OnClickPrevious() {
+            PlayBackSound();
             _toScrollValue = Mathf.Clamp(_toScrollValue - (1 / 5f), 0, 1);
             AnimateScroll();
         }
@@ -94,8 +97,9 @@ namespace GS.UI {
         #endregion
 
         private void HandleButtons() {
-            _previousButton.interactable = _scrollRect.horizontalNormalizedPosition > 1 / 6f;
-            _nextButton.interactable = _scrollRect.horizontalNormalizedPosition < 5 / 6f;
+            var v_horizontalNormalizedPosition = _scrollRect.horizontalNormalizedPosition;
+            _previousButton.interactable = v_horizontalNormalizedPosition > 1 / 6f;
+            _nextButton.interactable = v_horizontalNormalizedPosition < 5 / 6f;
         }
     }
 }
