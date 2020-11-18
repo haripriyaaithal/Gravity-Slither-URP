@@ -51,6 +51,7 @@ namespace GS.Gameplay.Spawner {
 
         private void OnInvisiblePowerUp(bool enable) {
             _isPlayerInvisible = enable;
+            _sphereCollider.isTrigger = enable;
         }
 
         #region Animations
