@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using GS.Common;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GS.Gameplay.Inputs {
     public class InputManager : MonoBehaviour {
@@ -25,7 +27,25 @@ namespace GS.Gameplay.Inputs {
 #endif
         }
 
+        private void OnEnable() {
+            EventManager.GetInstance().onSceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable() {
+            EventManager.GetInstance().onSceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene) {
+            _movementDirection = Vector3.zero;
+        }
+        
         public Vector3 GetMovementDirection() {
+            if (_movementDirection.x == 0 && _movementDirection.z == 0) {
+                _movementDirection.x = _x;
+                _movementDirection.z = _z;
+                return _movementDirection.normalized;
+            }
+            
             // Don't allow movement opposite to current direction
             if (_x != 0) {
                 if (System.Math.Abs(_movementDirection.x - _x * -1) > 0.0001f) {
@@ -43,7 +63,7 @@ namespace GS.Gameplay.Inputs {
                 }
             }
 
-            return new Vector3(_x, 0, _z).normalized;
+            return  _movementDirection.normalized;
         }
 
 
