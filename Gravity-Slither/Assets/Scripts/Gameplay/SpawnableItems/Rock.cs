@@ -64,7 +64,7 @@ namespace GS.Gameplay.Spawner {
         private void AnimateDestroy() {
             EnableRendererAndCollider(false);
             _particleEffects.Play();
-            LeanTween.delayedCall(_particleEffects.main.duration, () => { gameObject.SetActive(false); });
+            LeanTween.delayedCall(_particleEffects.main.duration + 0.4f, () => { gameObject.SetActive(false); });
         }
 
         #endregion

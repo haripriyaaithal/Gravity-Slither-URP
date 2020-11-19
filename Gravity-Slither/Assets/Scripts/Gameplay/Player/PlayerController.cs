@@ -52,7 +52,7 @@ namespace GS.Gameplay.Player {
             if (_canMove) {
                 _rigidbody.MovePosition(_rigidbody.position +
                                         transform.TransformDirection(_inputManager.GetMovementDirection()) *
-                                        (_movementSpeed * Time.deltaTime));
+                                        (_movementSpeed * Time.fixedDeltaTime));
             }
         }
 

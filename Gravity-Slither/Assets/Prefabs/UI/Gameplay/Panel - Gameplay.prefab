@@ -659,11 +659,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OnScreenControls
       objectReference: {fileID: 0}
-    - target: {fileID: 6519825602157201243, guid: cfe5598bc2c896d4e8c1caab1ddcec81,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6519825602157201316, guid: cfe5598bc2c896d4e8c1caab1ddcec81,
         type: 3}
       propertyPath: m_LocalPosition.x
