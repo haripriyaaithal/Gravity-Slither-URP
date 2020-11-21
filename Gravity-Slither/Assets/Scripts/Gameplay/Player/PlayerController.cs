@@ -2,8 +2,6 @@
 using GS.Common;
 using GS.Gameplay.Inputs;
 using GS.Gameplay.Spawner;
-using GS.UI;
-using GS.UI.Common;
 using UnityEngine;
 
 namespace GS.Gameplay.Player {
@@ -18,7 +16,6 @@ namespace GS.Gameplay.Player {
         private InputManager _inputManager;
         private ushort _foodCounter;
         private float _movementSpeed = 12;
-        private int _delayedCallId;
         private bool _isInvisible;
 
         #region Unity event functions
@@ -67,7 +64,7 @@ namespace GS.Gameplay.Player {
             EventManager.GetInstance().onPause += OnGamePause;
             EventManager.GetInstance().onGameOver += OnGameOver;
             EventManager.GetInstance().onEatFood += OnEatFood;
-            MakePlayerVisible();
+            EventManager.GetInstance().onInvisiblePowerUp += OnInvisiblePowerUp;
         }
 
         private void OnDisable() {
@@ -77,10 +74,10 @@ namespace GS.Gameplay.Player {
             EventManager.GetInstance().onPause -= OnGamePause;
             EventManager.GetInstance().onGameOver -= OnGameOver;
             EventManager.GetInstance().onEatFood -= OnEatFood;
+            EventManager.GetInstance().onInvisiblePowerUp -= OnInvisiblePowerUp;
         }
 
         private void OnDestroy() {
-            LeanTween.cancel(_delayedCallId);
             _inputManager = null;
             _rigidbody = null;
         }
@@ -105,34 +102,27 @@ namespace GS.Gameplay.Player {
         private void OnGameStart() {
             _canMove = true;
         }
-        
+
         private void GameOver() {
             if (Settings.GetInstance().GetSettings().ShouldVibrate()) {
                 Vibration.Vibrate(GlobalConstants.GameOverVibrateDuration);
             }
+
             var v_audioManager = ManagerFactory.Get<AudioManager>();
             if (v_audioManager != null) {
                 v_audioManager.PlaySnakeHitSound();
             }
+
             EventManager.GetInstance().OnGameOver();
         }
 
         private void OnGameOver() {
-            LeanTween.cancel(_delayedCallId);
             _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         }
 
         private void OnEatFood(Food food) {
-
             if (!_isInvisible) {
                 _foodCounter++;
-            }
-            
-            if (!_isInvisible && _foodCounter % GlobalConstants.FoodCountForPowerUp == 0) {
-                InvisiblePowerUp(GlobalConstants.InvisiblePowerUpTime);
-                var v_powerUpTimerUI = UIFactory.Get<PowerUpTimerUI>();
-                PanelStacker.AddPanel(v_powerUpTimerUI);
-                v_powerUpTimerUI.Initialize(GlobalConstants.InvisiblePowerUpTime);
             }
 
             // Increase speed for every 3rd food
@@ -143,10 +133,10 @@ namespace GS.Gameplay.Player {
 
         private void OnRevive() {
             _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-            InvisiblePowerUp(GlobalConstants.RevivePowerUpTime);
-            var v_powerUpTimerUI = UIFactory.Get<PowerUpTimerUI>();
-            PanelStacker.AddPanel(v_powerUpTimerUI);
-            v_powerUpTimerUI.Initialize(GlobalConstants.RevivePowerUpTime);
+            var v_powerUpManager = ManagerFactory.Get<PowerUpManager>();
+            if (v_powerUpManager != null) {
+                v_powerUpManager.InvisiblePowerUp(GlobalConstants.RevivePowerUpTime);
+            }
         }
 
         private void OnGamePause() {
@@ -162,23 +152,10 @@ namespace GS.Gameplay.Player {
         #endregion
 
         #region Invisible powerup
-        // TODO: Move this to PowerUpManager
-        private void InvisiblePowerUp(int powerUpTime) {
-            MakePlayerInvisible();
-            LeanTween.cancel(_delayedCallId);
-            _delayedCallId = LeanTween.delayedCall(powerUpTime, MakePlayerVisible).uniqueId;
-        }
-
-        private void MakePlayerInvisible() {
-            _isInvisible = true;
-            EventManager.GetInstance().OnInvisiblePowerUp(true);
-            _meshRenderer.sharedMaterial = _invisibleMaterial;
-        }
-
-        private void MakePlayerVisible() {
-            _isInvisible = false;
-            EventManager.GetInstance().OnInvisiblePowerUp(false);
-            _meshRenderer.sharedMaterial = _defaultMaterial;
+        
+        private void OnInvisiblePowerUp(bool isInvisible) {
+            _isInvisible = isInvisible;
+            _meshRenderer.sharedMaterial = isInvisible ? _invisibleMaterial : _defaultMaterial;
         }
 
         #endregion
