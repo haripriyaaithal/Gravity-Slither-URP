@@ -32,26 +32,42 @@ namespace GS.UI {
         #region UI Transitions
 
         private void AnimateUIOpen() {
+            _panelCanvasGroup.blocksRaycasts = false;
             LeanTween.alphaCanvas(_panelCanvasGroup, 1, 0);
 
             LeanTween.move(_panelHeader.target, _panelHeader.fromRect.anchoredPosition3D, 0);
-            _tweenIdList.Add(LeanTween.move(_panelHeader.target, _panelHeader.endPosition, _panelHeader.time)
-                .setFrom(_panelHeader.fromRect.anchoredPosition3D).setEaseOutExpo().setDelay(_panelHeader.delay).uniqueId);
+            var v_id = LeanTween.move(_panelHeader.target, _panelHeader.endPosition, _panelHeader.time)
+                .setFrom(_panelHeader.fromRect.anchoredPosition3D)
+                .setEaseOutExpo().
+                setDelay(_panelHeader.delay)
+                .uniqueId;
+            _tweenIdList.Add(v_id);
 
             LeanTween.move(_panelBody.target, _panelBody.fromRect.anchoredPosition3D, 0);
-            _tweenIdList.Add(LeanTween.move(_panelBody.target, _panelBody.endPosition, _panelBody.time)
-                .setFrom(_panelBody.fromRect.anchoredPosition3D).setEaseOutExpo().setDelay(_panelBody.delay).uniqueId);
-            _panelCanvasGroup.blocksRaycasts = true;
+            v_id = LeanTween.move(_panelBody.target, _panelBody.endPosition, _panelBody.time)
+                .setFrom(_panelBody.fromRect.anchoredPosition3D)
+                .setEaseOutExpo()
+                .setDelay(_panelBody.delay)
+                .setOnComplete(() => { _panelCanvasGroup.blocksRaycasts = true; })
+                .uniqueId;
+            _tweenIdList.Add(v_id);
         }
 
         private void AnimateUIClose(System.Action callback) {
             _panelCanvasGroup.blocksRaycasts = false;
-            _tweenIdList.Add(LeanTween.move(_panelHeader.target, _panelHeader.fromRect.anchoredPosition3D, _panelHeader.time)
-                .setFrom(_panelHeader.target.anchoredPosition3D).setEaseOutExpo().uniqueId);
-            _tweenIdList.Add(LeanTween.move(_panelBody.target, _panelBody.fromRect.anchoredPosition3D, _panelBody.time)
-                .setFrom(_panelBody.target.anchoredPosition3D).setEaseOutExpo().setOnComplete(
-                    () => { callback?.Invoke(); }).uniqueId);
-            
+            var v_id = LeanTween.move(_panelHeader.target, _panelHeader.fromRect.anchoredPosition3D, _panelHeader.time)
+                .setFrom(_panelHeader.target.anchoredPosition3D)
+                .setEaseOutExpo()
+                .uniqueId;
+            _tweenIdList.Add(v_id);
+
+            v_id = LeanTween.move(_panelBody.target, _panelBody.fromRect.anchoredPosition3D, _panelBody.time)
+                .setFrom(_panelBody.target.anchoredPosition3D)
+                .setEaseOutExpo()
+                .setOnComplete(() => { callback?.Invoke(); })
+                .uniqueId;
+            _tweenIdList.Add(v_id);
+
             LeanTween.alphaCanvas(_panelCanvasGroup, 0, 0.1f);
         }
 
