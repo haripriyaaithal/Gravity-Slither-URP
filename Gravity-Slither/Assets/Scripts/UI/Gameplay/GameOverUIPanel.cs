@@ -105,6 +105,10 @@ namespace GS.UI {
 
         public void OnClickShare() {
             PlayTouchSound();
+            var v_nativeShare = new NativeShare();
+            v_nativeShare.SetTitle("Download Gravity-Slither game");
+            v_nativeShare.SetText("Hey there! Download Gravity-Slither game from Google Play Store with the following link https://LINK"); // TODO: Update Google Play Store link
+            v_nativeShare.Share();
         }
 
         public void OnClickRevive() {
